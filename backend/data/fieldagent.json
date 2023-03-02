@@ -1,0 +1,79 @@
+[
+  {
+    "fieldagentname": { "fieldagentfn": "Max", "fieldagentln": "Smith" },
+    "fieldagentid": "1",
+    "managerid": "111",
+    "municipalid": "1",
+    "assignmentids": ["111111", "111112", "111113", "111114"],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "April", "fieldagentln": "Marco" },
+    "fieldagentid": "2",
+    "managerid": "111",
+    "municipalid": "2",
+    "assignmentids": [
+      "111221",
+      "111222",
+      "111223",
+      "111224",
+      "111225",
+      "111226"
+    ],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "Charles", "fieldagentln": "Dietrich" },
+    "fieldagentid": "3",
+    "managerid": "111",
+    "municipalid": "3",
+    "assignmentids": ["111331", "111332", "111333", "111334", "111335"],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "Shane", "fieldagentln": "Kurkoff" },
+    "fieldagentid": "4",
+    "managerid": "222",
+    "municipalid": "4",
+    "assignmentids": ["222441", "222442", "222443", "222444", "222445"],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "Zelda", "fieldagentln": "Cesare" },
+    "fieldagentid": "5",
+    "managerid": "222",
+    "municipalid": "5",
+    "assignmentids": ["222551", "222552", "222553", "222554", "222555"],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "Hamed", "fieldagentln": "Mazari" },
+    "fieldagentid": "6",
+    "managerid": "222",
+    "municipalid": "6",
+    "assignmentids": [
+      "222661",
+      "222662",
+      "222663",
+      "222664",
+      "222665",
+      "222666"
+    ],
+    "lat": 0,
+    "long": 0
+  },
+  {
+    "fieldagentname": { "fieldagentfn": "Nate", "fieldagentln": "Burbank" },
+    "fieldagentid": "7",
+    "managerid": "222",
+    "municipalid": "7",
+    "assignmentids": ["222771", "222772", "222773", "222774", "222775"],
+    "lat": 0,
+    "long": 0
+  }
+]

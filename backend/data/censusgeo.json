@@ -1,0 +1,80 @@
+[
+  {
+    "regionid": "1",
+    "regionname": "York",
+    "municipalid": "1",
+    "municipalname": "City of Markham"
+  },
+  {
+    "regionid": "1",
+    "regionname": "York",
+    "municipalid": "2",
+    "municipalname": "City of Richmond Hill"
+  },
+  {
+    "regionid": "1",
+    "regionname": "York",
+    "municipalid": "3",
+    "municipalname": "City of Vaughn"
+  },
+  {
+    "regionid": "1",
+    "regionname": "York",
+    "municipalid": "4",
+    "municipalname": "Town of Aurora"
+  },
+  {
+    "regionid": "1",
+    "regionname": "York",
+    "municipalid": "5",
+    "municipalname": "Town of Newmarket"
+  },
+  {
+    "regionid": "2",
+    "regionname": "Niagara",
+    "municipalid": "6",
+    "municipalname": "City of Niagara Falls"
+  },
+  {
+    "regionid": "2",
+    "regionname": "Niagara",
+    "municipalid": "7",
+    "municipalname": "City of Port Colborne"
+  },
+  {
+    "regionid": "2",
+    "regionname": "Niagara",
+    "municipalid": "8",
+    "municipalname": "City of St. Catharines"
+  },
+  {
+    "regionid": "2",
+    "regionname": "Niagara",
+    "municipalid": "9",
+    "municipalname": "City of Thorold"
+  },
+  {
+    "regionid": "2",
+    "regionname": "Niagara",
+    "municipalid": "10",
+    "municipalname": "City of Niagara Falls"
+  },
+  {
+    "regionid": "3",
+    "regionname": "Peel",
+    "municipalid": "11",
+    "municipalname": "City of Brampton"
+  },
+  {
+    "regionid": "3",
+    "regionname": "Peel",
+    "municipalid": "12",
+    "municipalname": "City of Mississauga"
+  },
+  {
+    "regionid": "3",
+    "regionname": "Peel",
+    "municipalid": "13",
+    "municipalname": "Town of Caledon"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "managerid": "111",
+    "name": { "firstname": "John", "lastname": "Mcreid" },
+    "region": "York",
+    "regionid": "1",
+    "municipalities": [
+      { "municipalityname": "City of Markham" },
+      { "municipalityname": "City of Vaughn" },
+      { "municipalityname": "Town of Aurora" }
+    ],
+    "fieldagents": [
+      { "fieldagentfn": "Max", "fieldagentln": "Smith" },
+      { "fieldagentfn": "April", "fieldagentln": "Marco" },
+      { "fieldagentfn": "Charles", "fieldagentln": "Dietrich" }
+    ]
+  },
+  {
+    "managerid": "222",
+    "name": { "firstname": "Denise", "lastname": "Schuman" },
+    "region": "Niagara",
+    "regionid": "2",
+    "municipalities": [
+      { "municipalityname": "City of Niagara Falls" },
+      { "municipalityname": "City of Port Colborne" },
+      { "municipalityname": "City of St. Catharines" },
+      { "municipalityname": "City of Thorold" }
+    ],
+    "fieldagents": [
+      { "fieldagentfn": "Shane", "fieldagentln": "Kurkoff" },
+      { "fieldagentfn": "Zelda", "fieldagentln": "Cesare" },
+      { "fieldagentfn": "Hamed", "fieldagentln": "Mazari" },
+      { "fieldagentfn": "Nate", "fieldagentln": "Burbank" }
+    ]
+  }
+]
