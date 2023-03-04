@@ -5,6 +5,7 @@ frontendapp/node_modules
 backend/node_modules
 *.docx
 assignmentphoto
+.DS_Store
 
 /.pnp
 .pnp.js
