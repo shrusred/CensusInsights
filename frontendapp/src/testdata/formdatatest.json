@@ -1,0 +1,34 @@
+[
+  {
+    "assignmentid": "111111",
+    "householdnumber": 3,
+    "ethnicity": ["Southeast Asian", "Southeast Asian", "Filipino"],
+    "age": [25, 30, 32],
+    "income": [60000, 80000, 80000],
+    "gender": ["female", "female", "male"],
+    "occupation": ["Security Professional", "Business Manager", "Lawyer"],
+    "city": "Markham"
+  },
+  {
+    "assignmentid": "111223",
+    "householdnumber": 5,
+    "ethnicity": [
+      "Latin American",
+      "Latin American",
+      "Latin American",
+      "Arab",
+      "Latin American"
+    ],
+    "age": [15, 9, 7, 40, 43],
+    "income": [0, 0, 0, 180000, 200000],
+    "gender": ["female", "female", "male", "female", "male"],
+    "occupation": [
+      "Student",
+      "Student",
+      "Student",
+      "Higher education",
+      "Information Technology"
+    ],
+    "city": "Vaughn"
+  }
+]

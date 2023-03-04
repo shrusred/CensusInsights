@@ -1,0 +1,470 @@
+[
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111111",
+    "address": {
+      "street": "15 Brookbank Crt",
+      "city": "Markham",
+      "province": "Ontario",
+      "postalcode": "L3P6K9"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.885130",
+    "long": "-79.274630"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111112",
+    "address": {
+      "street": "55 Shady Lane Cres",
+      "city": "Markham",
+      "province": "Ontario",
+      "postalcode": "L3T3W6"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.825390",
+    "long": "-79.409440"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111113",
+    "address": {
+      "street": "238 Riverlands Ave",
+      "city": "Markham",
+      "province": "Ontario",
+      "postalcode": "L6B0W2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.887110",
+    "long": "-79.227310"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111114",
+    "address": {
+      "street": "6 Hawksbury Rd",
+      "city": "Markham",
+      "province": "Ontario",
+      "postalcode": "L6E1G9"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.893910",
+    "long": "-79.277750"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111221",
+    "address": {
+      "street": "79 Forest Run Blvd",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L4K5J6"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.839550",
+    "long": "-79.485920"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111222",
+    "address": {
+      "street": "51 Hopewell St",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L4H3Y2"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.827290",
+    "long": "-79.650540"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111223",
+    "address": {
+      "street": "15 Kylemount court",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L4J0J4"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.8404",
+    "long": "-79.47538"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111224",
+    "address": {
+      "street": "51 Cordoba Dr",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L4J8J8"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.79383",
+    "long": "-79.44824"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111225",
+    "address": {
+      "street": "2 Vespucci Dr",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L6A2T8"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.86617",
+    "long": "-79.53812"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111226",
+    "address": {
+      "street": "29 George Kirby St",
+      "city": "Vaughn",
+      "province": "Ontario",
+      "postalcode": "L6A0K5"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.849951",
+    "long": "-79.460324"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111331",
+    "address": {
+      "street": "14311 Bayview Ave",
+      "city": "Aurora",
+      "province": "Ontario",
+      "postalcode": "L4G0K7"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.98186",
+    "long": "-79.43843"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111332",
+    "address": {
+      "street": "72 Weslock Cres",
+      "city": "Aurora",
+      "province": "Ontario",
+      "postalcode": "L4G7Y9"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "44.0074",
+    "long": "-79.43622"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111333",
+    "address": {
+      "street": "543 Wellington St W",
+      "city": "Aurora",
+      "province": "Ontario",
+      "postalcode": "L4G6J7"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.99563",
+    "long": "-79.48609"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111334",
+    "address": {
+      "street": "97 Tyler St",
+      "city": "Aurora",
+      "province": "Ontario",
+      "postalcode": "L4G2N4"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.99636",
+    "long": "-79.47344"
+  },
+  {
+    "fieldagentid": "1",
+    "assignmentid": "111335",
+    "address": {
+      "street": "30 Cottonwood Hollow Crt",
+      "city": "Aurora",
+      "province": "Ontario",
+      "postalcode": "L4G3L8"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.97831",
+    "long": "-79.46411"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222441",
+    "address": {
+      "street": "6978 Shannon Dr",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalcode": "L2H3N7"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.0731",
+    "long": "-79.14372"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222442",
+    "address": {
+      "street": "7755 Shagbark Ave",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalcode": "L2H3R9"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.0631104",
+    "long": "-79.1448127"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222443",
+    "address": {
+      "street": "7133 Harriman St",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalcode": "L2J3S1"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.12421",
+    "long": "-79.11678"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222444",
+    "address": {
+      "street": "4960 Jepson St",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalcode": "L2E1K2"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.10041",
+    "long": "-79.07595"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222445",
+    "address": {
+      "street": "6652 Parkside Dr",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalcode": "L2H0A8"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.22243",
+    "long": "-79.20943"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222551",
+    "address": {
+      "street": "2592 Highway St N",
+      "city": "Port Colborne",
+      "province": "Ontario",
+      "postalcode": "L3K5V4"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "42.88509",
+    "long": "-79.252"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222552",
+    "address": {
+      "street": "336 Catherine St",
+      "city": "Port Colborne",
+      "province": "Ontario",
+      "postalcode": "L3K4L4"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "42.88892",
+    "long": "-79.25312"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222553",
+    "address": {
+      "street": "628 Steele St",
+      "city": "Port Colborne",
+      "province": "Ontario",
+      "postalcode": "L3K4Y7"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "42.8952",
+    "long": "-79.26012"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222554",
+    "address": {
+      "street": "116 Fares St",
+      "city": "Port Colborne",
+      "province": "Ontario",
+      "postalcode": "L3K1W2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "42.88171",
+    "long": "-79.24486"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222555",
+    "address": {
+      "street": "89 Colborne St",
+      "city": "Port Colborne",
+      "province": "Ontario",
+      "postalcode": "L3K1G2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "42.88781",
+    "long": "-79.23561"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222661",
+    "address": {
+      "street": "145 Lockhart Drive",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2T1W5"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.12521",
+    "long": "-79.2477"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222662",
+    "address": {
+      "street": "4 Glenellen Dr",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2M5Y5"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.18398",
+    "long": "-79.2116"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222663",
+    "address": {
+      "street": "82 Main St",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2N4V2"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.19955",
+    "long": "-79.27167"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222664",
+    "address": {
+      "street": "4 Valvano Court",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2W1C2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.15834",
+    "long": "-79.2771"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222665",
+    "address": {
+      "street": "41 Sterling Street",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2S3T2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.13043",
+    "long": "-79.26173"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222666",
+    "address": {
+      "street": "3 Valerie Drive",
+      "city": "St. Catherines",
+      "province": "Ontario",
+      "postalcode": "L2T3G3"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.13331",
+    "long": "-79.23439"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222771",
+    "address": {
+      "street": "47 Hodgkins Avenue",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalcode": "L2V1M2"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.09133",
+    "long": "-79.20126"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222772",
+    "address": {
+      "street": "135 Keefer Rd",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalcode": "L2V4V1"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.10819",
+    "long": "-79.22409"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222773",
+    "address": {
+      "street": "37 Parkdale Drive",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalcode": "L2V2N5"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.12523",
+    "long": "-79.21328"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222774",
+    "address": {
+      "street": "44 Naples Court",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalcode": "L2V4S7"
+    },
+    "date": "2023-02-22T00:00:00.000Z",
+    "lat": "43.11092",
+    "long": "-79.22734"
+  },
+  {
+    "fieldagentid": "2",
+    "assignmentid": "222775",
+    "address": {
+      "street": "39 Autumn Avenue",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalcode": "L2V0H2"
+    },
+    "date": "2023-02-23T00:00:00.000Z",
+    "lat": "43.09194",
+    "long": "-79.18773"
+  }
+]
