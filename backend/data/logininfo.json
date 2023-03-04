@@ -1,4 +1,11 @@
 [
-  { "login": "jm", "password": "abc123" },
-  { "login": "sm", "password": "cde123" }
+  { "id": "111", "username": "jmcreid", "password": "abc123" },
+  { "id": "222", "username": "dschuman", "password": "efg789" },
+  { "id": "1", "username": "msmith", "password": "sun4455" },
+  { "id": "2", "username": "amarco", "password": "moon1122" },
+  { "id": "3", "username": "cdietrich", "password": "junjul333" },
+  { "id": "4", "username": "skurkoff", "password": "canada123" },
+  { "id": "5", "username": "zcesare", "password": "america123" },
+  { "id": "6", "username": "hmazari", "password": "london123" },
+  { "id": "7", "username": "nburbank", "password": "spain123" }
 ]
