@@ -57,10 +57,10 @@ function Verification() {
   // const removeFile = (filename) => {
   //   setFile();
   // };
+  // file={file} setFile={setFile}
   return (
     <>
-      {/* <button onClick={handleClick}>UPLOAD LOCATION PIC</button> */}
-      <FileUpload file={file} setFile={setFile} />
+      <FileUpload />
       <div>
         Latitude: {latitude}
         <br />

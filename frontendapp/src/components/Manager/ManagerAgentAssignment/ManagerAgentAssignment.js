@@ -20,22 +20,32 @@ function Assignments() {
   console.log(rows);
   return (
     <>
-      <h1>this is the manager agent assignment</h1>
+      <h1>Assign new surveys to your field agents</h1>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Age</TableCell>
+              <TableCell>AssignmentID</TableCell>
+              <TableCell>FieldAgent</TableCell>
+              <TableCell>Street</TableCell>
+              <TableCell>City</TableCell>
+              <TableCell>Postal Code</TableCell>
+              <TableCell>Lat</TableCell>
+              <TableCell>Long</TableCell>
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.age}</TableCell>
+              <TableRow key={row.AssignmentID}>
+                <TableCell>{row.AssignmentID}</TableCell>
+                <TableCell>{row.FieldAgent}</TableCell>
+                <TableCell>{row.Street}</TableCell>
+                <TableCell>{row.City}</TableCell>
+                <TableCell>{row.Postal}</TableCell>
+                <TableCell>{row.Lat}</TableCell>
+                <TableCell>{row.Long}</TableCell>
+                <TableCell>Yes|No</TableCell>
               </TableRow>
             ))}
           </TableBody>

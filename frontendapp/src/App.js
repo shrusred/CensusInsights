@@ -21,7 +21,10 @@ function App() {
           />
           <Route path="/manager/populationstats" element={<Popstats />} />
           <Route path="/fieldagent/home" element={<FieldagentMain />} />
-          <Route path="/fieldagent/verify/:id" element={<Fieldagentverify />} />
+          <Route
+            path="/fieldagent/verify/:assignmentid"
+            element={<Fieldagentverify />}
+          />
           <Route path="/fieldagent/form" element={<FieldAgentFormP />} />
         </Routes>
       </BrowserRouter>

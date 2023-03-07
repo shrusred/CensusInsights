@@ -13,7 +13,7 @@
   padding: 1ems;
   display: flex;
   align-items: center;
-  width: 20vw;
+  width: 100%;
   height: 10vh;
   position: relative;
   input {
@@ -22,24 +22,5 @@
     height: 100%;
     z-index: 2;
     opacity: 100%;
-  }
-  button {
-    background-color: #3b7b9a;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-family: "Raleway";
-    font-weight: bold;
-    transition: background-color 0.5s;
-    i {
-      margin-right: 1vw;
-      color: #232931;
-      background-color: #fff;
-      border-radius: 50%;
-    }
   }
 }

@@ -6,7 +6,11 @@
     "age": [25, 30, 32],
     "income": [60000, 80000, 80000],
     "gender": ["female", "female", "male"],
-    "occupation": ["Security Professional", "Trade manager", "Lawyer"]
+    "occupation": [
+      "Dental Assistant",
+      "Information Technology",
+      "Information Technology"
+    ]
   },
   {
     "assignmentid": "111112",
@@ -25,8 +29,8 @@
       "Student",
       "Student",
       "Student",
-      "Higher education",
-      "Information Technology"
+      "Nurse aides and orderlies",
+      "Engineer"
     ]
   }
 ]

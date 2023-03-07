@@ -35,6 +35,8 @@ function Signoncomponent() {
       })
       .then((response) => {
         sessionStorage.setItem("clientAuthToken", response.data.token);
+        console.log(response.data.role);
+        //use navigate to send to appropriate page based on role
         // fetchProfile(response.data.token);
       })
       .catch((err) => console.log("login error", err.response.data));
