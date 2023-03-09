@@ -14,18 +14,24 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/manager/home" element={<ManagerMain />} />
+          <Route path="/manager/home/:userid" element={<ManagerMain />} />
           <Route
-            path="/manager/agentassignment"
+            path="/manager/agentassignment/:userid"
             element={<ManagerAgentAssign />}
           />
-          <Route path="/manager/populationstats" element={<Popstats />} />
-          <Route path="/fieldagent/home" element={<FieldagentMain />} />
           <Route
-            path="/fieldagent/verify/:assignmentid"
+            path="/manager/populationstats/:userid"
+            element={<Popstats />}
+          />
+          <Route path="/fieldagent/home/:userid" element={<FieldagentMain />} />
+          <Route
+            path="/fieldagent/verify/:userid/:assignmentid"
             element={<Fieldagentverify />}
           />
-          <Route path="/fieldagent/form" element={<FieldAgentFormP />} />
+          <Route
+            path="/fieldagent/form/:assignmentid"
+            element={<FieldAgentFormP />}
+          />
         </Routes>
       </BrowserRouter>
     </>

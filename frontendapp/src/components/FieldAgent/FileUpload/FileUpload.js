@@ -7,7 +7,9 @@ import "../FileUpload/FileUpload.scss";
 ////
 //{ file, setFile }
 const FileUpload = () => {
-  let { assignmentid } = useParams();
+  let { assignmentid, userid } = useParams();
+  // console.log("assignment id is", assignmentid);
+  // console.log("userid is", userid);
 
   const uploadHandler = (event) => {
     console.log("am in uploadhandler");
@@ -19,8 +21,9 @@ const FileUpload = () => {
       body: filechosen,
     })
       .then((res) => {
-        console.log("response", res); //Q. response is something that is got back from the API??. Async, await. Fetch vs axios
+        console.log("response", res);
         console.log("am sending the assignment id and file to the backend");
+        alert("You have successfully uploaded the picture to our server");
       })
       .catch((err) => {
         //send message to user
@@ -30,6 +33,10 @@ const FileUpload = () => {
 
   return (
     <>
+      <h2>This is assignment # {assignmentid}</h2>
+      <h3>
+        Upload a picture of the location of your assignment for validation
+      </h3>
       <div className="fileupload">
         <div className="fileinput">
           <input type="file" onChange={uploadHandler} />
@@ -37,6 +44,7 @@ const FileUpload = () => {
         <div className="fileinput-info">
           <p>Supports files of type .png, .jpeg, .jpg</p>
         </div>
+        <button>SUBMIT</button>
       </div>
     </>
   );

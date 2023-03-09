@@ -1,5 +1,4 @@
 //importing express and initializing it on data
-// const { fileTypeFromBuffer } = require("file-type");
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
@@ -8,20 +7,8 @@ const locationphotoJSON = "./data/locationphoto.json";
 const mysql = require("mysql");
 console.log(locationphotoJSON);
 const jwt = require("jsonwebtoken");
-const knex = require("knex")(require("../backend/knexfile.js"));
-
 const router = express.Router();
-const users = [
-  { id: "111", username: "jmcreid", password: "abc123", role: "manager" },
-  { id: "222", username: "dschuman", password: "efg789", role: "manager" },
-  { id: "1", username: "msmith", password: "sun4455", role: "fieldagent" },
-  { id: "2", username: "amarco", password: "moon1122", role: "fieldagent" },
-  { id: "3", username: "cdietrich", password: "junjul333", role: "fieldagent" },
-  { id: "4", username: "skurkoff", password: "canada123", role: "fieldagent" },
-  { id: "5", username: "zcesare", password: "america123", role: "fieldagent" },
-  { id: "6", username: "hmazari", password: "london123", role: "fieldagent" },
-  { id: "7", username: "nburbank", password: "spain123", role: "fieldagent" },
-];
+// const knex = require("knex")(require("../backend/knexfile.js"));
 
 //solving CORS:
 const cors = require("cors");
@@ -33,15 +20,20 @@ const fs = require("fs");
 const PORT = process.env.PORT || 8080;
 
 // app.use(bodyparser.json());
-
+//////////////////////////////////////////////////////
+/////////   DATABASE CONNECTION   ////////////////////
+//////////////////////////////////////////////////////
 const connection = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
   password: "rootroot",
-  database: "censusinsights", //updated the database
+  database: "censusinsights",
 });
+//////////////////////////////////////////////////////
+/////////   FUNCTIONS   //////////////////////////////
+//////////////////////////////////////////////////////
+//1.function to get all the users that can login
 function getUsers() {
-  //reusable async function
   return new Promise((resolve, reject) => {
     connection.query(
       "SELECT m.managerid AS id,m.username,m.password,m.role FROM manager m UNION SELECT f.fieldagentid,f.username,f.password,f.role FROM fieldagent f;",
@@ -49,21 +41,89 @@ function getUsers() {
         if (error) {
           reject(error);
         }
-        // console.log(results);
+
         resolve(results);
       }
     );
   });
 }
+//2. function to get the user information based on the user id passed
+function getUser(id) {
+  const statement = `SELECT DISTINCT managerid FROM manager WHERE managerid=${id};`;
 
-//read file: locationphotoJSON
+  return new Promise((resolve, reject) => {
+    connection.query(statement, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+
+      resolve(results);
+    });
+  });
+}
+//.3 function to get the fieldagent's assignments based on id based
+function getFieldagentAssignments(id) {
+  const fieldagent_assignments_query = `SELECT assignmentid as id,street,city,postalcode,date_format(assignment_date,'%Y-%m-%d') as assignment_date,latitude,longitude FROM assignments where fieldagent_id=${id};`;
+  return new Promise((resolve, reject) => {
+    connection.query(fieldagent_assignments_query, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+      console.log(results);
+      resolve(results);
+    });
+  });
+}
+//4. Function to get fieldagent information
+function getFieldagentInfo(id) {
+  const fieldagent_info_query = `select fieldagentid,fieldagentname,latitude,longitude from fieldagent where fieldagentid=${id};`;
+  return new Promise((resolve, reject) => {
+    connection.query(fieldagent_info_query, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+      console.log(results);
+      resolve(results);
+    });
+  });
+}
+
+//5. function to get the manager information
+function getManagerInfo(id) {
+  const manager_info_query = `select * from manager where managerid=${111};`;
+  return new Promise((resolve, reject) => {
+    connection.query(manager_info_query, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+
+      resolve(results);
+    });
+  });
+}
+
+//6. function to get the assignments of a manager
+function getManagerAssignments(id) {
+  const manager_assignments_query = `select a.assignmentid as id,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude from
+  assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id where m.managerid=${id};`;
+  return new Promise((resolve, reject) => {
+    connection.query(manager_assignments_query, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+
+      resolve(results);
+    });
+  });
+}
+//7.function to read file: locationphotoJSON
 function readLocationphoto() {
   const locationphotoFile = fs.readFileSync(locationphotoJSON);
   const locationphotoData = JSON.parse(locationphotoFile);
   return locationphotoData;
 }
 
-// write new data into the locationphoto
+//8. function to write new data into the locationphoto
 function writeLocationPhotoItem(data) {
   const newLocationPhotoData = data;
 
@@ -73,14 +133,13 @@ function writeLocationPhotoItem(data) {
   fs.writeFileSync("./data/locationphoto.json", JSON.stringify(toWrite));
 }
 
-//Creating new locationphoto in the storage
+//9.function to create new locationphoto in the storage
 function createNewLocationPhotoItem(data) {
   //Creating data obj
   const newItem = {
     assignmentid: data.assignmentid,
     imagepath: data.imagepath,
   };
-
   //Writing new inventory on database
   writeLocationPhotoItem(newItem);
 }
@@ -88,13 +147,16 @@ function createNewLocationPhotoItem(data) {
 const fileTypeFromBuffer = (...args) =>
   import("file-type").then(({ fileTypeFromBuffer }) =>
     fileTypeFromBuffer(...args)
-  ); //Ben told me to do this
+  ); //Received from instructor Ben
+
+//10. censusdata for manager assignments
+// select c.householdnumber,c.occupation,c.ethnicity,c.age,c.income,c.gender,c.assignment_id from manager m join fieldagent f on m.managerid=f.manager_id join assignments a on a.fieldagent_id=f.fieldagentid join censusdata c on c.assignment_id=a.assignmentid where m.managerid=111;
 
 ////////////////////////////////////////////////////
 /////////////////   API ACTIONS   //////////////////
 ////////////////////////////////////////////////////
 
-// 1. Assignment photo file upload POST
+// 1. Assignment photo file upload POST method
 app.post(
   "/assignment/:assignmentid/image", //what is the use of the /image at the end ?
   // middleware for parsing the incoming request body, provide an array of types that your server will support
@@ -131,12 +193,16 @@ app.post(
     });
   }
 );
-// 2. DELETE Q. delete data if there is no census data then delete, else say you cannot delete
+// 2. DELETE Logic to be implemented: delete data if there is no census data then delete, else say you CANNOT delete
 app.delete("/assignment/:assignmentid", (req, res) => {
-  console.log("File deleted");
-  return res.status(200).json({ result: true, msg: "file deleted" });
+  console.log("Assignment deleted");
+  const query = `DELETE FROM assignments where assignmentid=${req.params.assignmentid}`;
+  connection.query(query, (error, results, fields) => {
+    if (error) throw error;
+    return res.status(200).send("Assignment deleted!");
+  });
 });
-
+//////////////// AUTHORIZATION  //////////////////
 const authorize = (req, res, next) => {
   if (!req.headers.authorization) {
     return res.status(401).json({ message: "No token found" });
@@ -159,18 +225,18 @@ const authorize = (req, res, next) => {
     next();
   });
 };
-// 3. Authorization POST (LOGIN END POINT)
-//new line
+// 3. LOGIN END POINT- user login verification
+// a protected route, note we are using a second parameter "authorize"
+// which is our middleware for authentication
 app.post("/login", async (req, res) => {
-  // console.log("req bod", req.body);
+  ///Q. Adding the authorize cause error, why?
+
   const { username, password } = req.body;
   const users_db = await getUsers();
-  console.log(users_db);
-  const user = users.find((user) => {
+
+  const user = users_db.find((user) => {
     return user.username === username;
   });
-  console.log(user.id);
-  // console.log("user", user);
 
   if (!user) {
     return res.status(403).json({ message: "This user doesn't exist" });
@@ -183,25 +249,49 @@ app.post("/login", async (req, res) => {
         userid: user.id, //
         username: username,
         loginTime: Date.now(),
+        role: user.role,
+        name: user.name,
       },
-      "somesecretstring", //process.env.JWT_SECRET, //.dotenv. create a file on machine with .env and ignore this in source control. Use the .dotenv package to load the file and then access it with the process
+      "somesecretstring",
       { expiresIn: "3m" }
     );
-    return res.status(200).json({ token, role: user.role });
+    return res
+      .status(200)
+      .json({ token, role: user.role, id: user.id, name: user.name });
   } else {
     return res.status(403).json({ message: "Invalid username or password" });
   }
 });
 
-// a protected route, note we are using a second parameter "authorize" which is our middleware for authentication
-
-// 4. Authorization GET relevant data
-app.get("/profilehome/:id", authorize, (req, res) => {
-  console.log("reached profile home page based on id");
-  return res.status(200).json({ token });
+// 4. Get fieldagent information
+app.get("/fieldagent/:id", async (req, res) => {
+  const fieldagent_Info = await getFieldagentInfo(req.params.id);
+  return res.send(fieldagent_Info);
 });
 
-//Listening for access on PORT
+// 5. Get assignments of a field agent
+app.get("/fieldagent/:id/assignments", async (req, res) => {
+  const fieldagent_Assignments = await getFieldagentAssignments(req.params.id);
+  return res.send(fieldagent_Assignments);
+});
+
+// 6. Get manager information
+app.get("/manager/:id", async (req, res) => {
+  const manager_Info = await getManagerInfo(req.params.id);
+  return res.send(manager_Info);
+});
+
+// 7. Get manager assignments
+app.get("/manager/:id/assignments", async (req, res) => {
+  const manager_Assignments = await getManagerAssignments(req.params.id);
+  return res.send(manager_Assignments);
+});
+
+//app.patch
+
+/////////////////////////////////////////////////////////////////
+/////////////   Listening for access on PORT   //////////////////
+/////////////////////////////////////////////////////////////////
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
@@ -214,4 +304,18 @@ app.listen(PORT, () => {
 //   // writeLocationPhotoItem(req.body);
 //   // console.log("file uploaded");
 //   return res.status(200).json({ result: true, msg: "file uploaded" });
+// });
+
+////// possible get api for home page
+
+// // 5. Authorization -- GET manager home data---should return manager name, username
+// app.get("/manager/home/:id", authorize, (req, res) => {
+//   console.log("reached manager profile home page based on id");
+//   return res.status(200).json({ token });
+// });
+
+// // 6. Authorization -- GET fieldagent home data
+// app.get("/fieldagent/home/:id", authorize, (req, res) => {
+//   console.log("reached fieldagent profile home page based on id");
+//   return res.status(200).json({ token });
 // });

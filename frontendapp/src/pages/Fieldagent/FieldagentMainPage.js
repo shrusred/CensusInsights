@@ -2,6 +2,7 @@ import FieldAgentHome from "../../components/FieldAgent/FieldagentAssignments/Fi
 
 function FieldAgentHomeComp() {
   return (
+    //provide data form the api call as prop to the component
     <>
       <FieldAgentHome />
     </>
