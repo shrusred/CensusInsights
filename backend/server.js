@@ -104,8 +104,7 @@ function getManagerInfo(id) {
 
 //6. function to get the assignments of a manager
 function getManagerAssignments(id) {
-  const manager_assignments_query = `select a.assignmentid as id,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude from
-  assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id where m.managerid=${id};`;
+  const manager_assignments_query = `select a.assignmentid as id,f.fieldagentid,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude,c.assignment_id as censusassignment from   assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id left join censusdata c on c.assignment_id=a.assignmentid where m.managerid=${id};`;
   return new Promise((resolve, reject) => {
     connection.query(manager_assignments_query, (error, results, fields) => {
       if (error) {
@@ -193,7 +192,36 @@ app.post(
     });
   }
 );
-// 2. DELETE Logic to be implemented: delete data if there is no census data then delete, else say you CANNOT delete
+// 2. ADD assignment Logic to be implemented
+app.post("/assignment", (req, res) => {
+  console.log("posting assignment");
+  console.log(req.body);
+  console.log(req.body.street);
+  console.log(req.body.city);
+  console.log(req.body.postalcode);
+  console.log(req.body.fieldagent_id);
+  console.log(req.body.latitude);
+  console.log(req.body.longitude);
+
+  console.log(typeof req.body);
+  const query = `insert into assignments (street,city,postalcode,fieldagent_id,latitude,longitude) values ('${req.body.street}','${req.body.city}','${req.body.postalcode}','${req.body.fieldagent_id}','${req.body.latitude}','${req.body.longitude}');`;
+  connection.query(query, (error, results, fields) => {
+    if (error) {
+      console.log(error);
+      return res.status(400).send("Input expected in the right format");
+    } else return res.status(200).send("Assignment aded!");
+  });
+});
+// 3. EDIT assignment Logic to be implemented
+app.put("/assignment/:assignmentid", (req, res) => {
+  console.log("in the put call");
+  const query = `UPDATE assignments SET street = '${req.body.street}', city='${req.body.city}', postalcode='${req.body.postalcode}',latitude='${req.body.latitude}',longitude='${req.body.longitude}', fieldagent_id='${req.body.fieldagent_id}'  WHERE assignmentid= ${req.params.assignmentid};`;
+  connection.query(query, (error, results, fields) => {
+    if (error) throw error;
+    return res.status(200).send("Assignment edited!");
+  });
+});
+// 4. DELETE Logic to be implemented: delete data if there is no census data then delete, else say you CANNOT delete
 app.delete("/assignment/:assignmentid", (req, res) => {
   console.log("Assignment deleted");
   const query = `DELETE FROM assignments where assignmentid=${req.params.assignmentid}`;
