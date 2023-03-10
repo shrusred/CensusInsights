@@ -1,15 +1,34 @@
 import React from "react";
 import ManagerAgentAssignment from "../../components/Manager/ManagerAgentAssignment/ManagerAgentAssignment.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function ManagerAgentAssignmentPage() {
-  const [screensize, setScreenSize] = useState(900);
-  // function checkScreenSize(){
+  const [screenSize, setScreenSize] = useState("desktop");
 
-  // }
+  useEffect(() => {
+    function handleResize() {
+      // setScreenSize({ width: window.innerWidth, height: window.innerHeight });
+      const width = window.innerWidth;
+      // console.log("this is the page width", width);
+      if (width > 900) {
+        setScreenSize("desktop");
+      } else {
+        setScreenSize("mobile");
+      }
+    }
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Call handleResize to set initial screen size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   //add a property here called res- with options desktop, mobile, tablet
   return (
     <>
-      <ManagerAgentAssignment screensize={screensize} />
+      <ManagerAgentAssignment screenSize={screenSize} />
     </>
   );
 }

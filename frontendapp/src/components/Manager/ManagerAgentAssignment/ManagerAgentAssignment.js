@@ -19,7 +19,7 @@ import {
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { green } from "@mui/material/colors";
 
-function Assignments({ screensize }) {
+function Assignments({ screenSize }) {
   const params = useParams();
   const userId = params.userid;
   const [rows, setRows] = useState([]);
@@ -85,7 +85,7 @@ function Assignments({ screensize }) {
   ////TESTING VARIOUS FUNCTIONALITIES
   ///// 1. testing post assignment api
   const testpostData = {
-    street: "123 Crescent Road",
+    street: "frontendposting_Test_1",
     city: "Aurora",
     postalcode: "L8K4F3",
     fieldagent_id: 1,
@@ -93,14 +93,14 @@ function Assignments({ screensize }) {
     longitude: -79.79,
   };
 
-  axios
-    .post("`http://localhost:8080/assignment", testpostData)
-    .then((response) => {
-      console.log("Response:", response.data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  // axios
+  //   .post("http://localhost:8080/assignment", testpostData)
+  //   .then((response) => {
+  //     console.log("Response of post:", response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error of post:", error);
+  //   });
 
   ///////2. testing drop down select
   const options = [
@@ -112,9 +112,13 @@ function Assignments({ screensize }) {
   const handleSelectChange = (event) => {
     setValue(event.target.value);
   };
-  //if statement
-  if (screensize === "mobile") {
-    return <></>;
+
+  if (screenSize === "mobile") {
+    return (
+      <>
+        <h1>THIS IS THE MOBILE CONTENT</h1>
+      </>
+    );
   }
 
   return (
