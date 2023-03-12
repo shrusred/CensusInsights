@@ -21,12 +21,12 @@
       margin-top: 5vh;
       &--icon {
         margin-top: 5vh;
-        margin-left: 2vw;
+        margin-left: 1vw;
         transform: scale(2.5);
         color: $tealblue;
       }
       &--text {
-        margin: 5vh 1vw 5vh -5vw;
+        margin: 5vh 1vw 5vh 3vw;
         font-weight: bold;
         font-size: $mobileheader;
       }
@@ -53,12 +53,13 @@
         transform: scale(4);
         color: $tealblue;
         margin-top: 1vh;
-        margin-left: 5vw;
+        margin-left: 3vw;
         padding: 0;
         box-sizing: border-box;
       }
       &--text {
         margin-top: 5vh;
+        margin-left: 7vw;
         font-weight: bold;
         font-size: $desktopheader;
       }
@@ -69,7 +70,7 @@
     /////////// MOBILE ////////////////
     @include mob {
       display: flex;
-      margin-top: 10vh;
+      margin-top: 5vh;
       height: 30vh;
       width: 40vw;
       justify-content: space-around;
@@ -83,7 +84,8 @@
       &--button {
         background-color: $aquablue;
         border: none;
-        font-size: $mobilebutton;
+        font-size: $mobilebuttonlogin;
+        color: $darkgray;
         width: 20vw;
         height: 5vh;
         border-radius: 1vh;
@@ -109,7 +111,7 @@
         height: 5vh;
         display: flex;
         margin: 5vh 5vw;
-        font-size: $desktopbutton;
+        font-size: $desktopbuttonlogin;
         text-align: center;
         display: flex;
         align-content: center;

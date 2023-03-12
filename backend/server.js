@@ -36,7 +36,7 @@ const connection = mysql.createConnection({
 function getUsers() {
   return new Promise((resolve, reject) => {
     connection.query(
-      "SELECT m.managerid AS id,m.username,m.password,m.role FROM manager m UNION SELECT f.fieldagentid,f.username,f.password,f.role FROM fieldagent f;",
+      "SELECT m.managerid AS id,m.username,m.password,m.role,m.managername as name FROM manager m UNION SELECT f.fieldagentid,f.username,f.password,f.role,f.fieldagentname FROM fieldagent f;",
       (error, results, fields) => {
         if (error) {
           reject(error);

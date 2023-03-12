@@ -1,0 +1,12 @@
+@import "../../App.scss";
+.footer {
+  background-color: $mediumgray;
+  @include mob {
+    width: 100%;
+    height: 12vh;
+  }
+  @include des {
+    width: 100%;
+    height: 8vh;
+  }
+}

@@ -1,0 +1,41 @@
+@import "../../App.scss";
+.header {
+  @include mob {
+    width: 100vw;
+    height: 25vh;
+    background-color: $lightgray;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    &__icon {
+      margin-top: 2%;
+      transform: scale(3.5);
+      color: $tealblue;
+    }
+    &__text {
+      font-size: $mobileheader;
+    }
+  }
+  @include des {
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: $lightgray;
+    &__icon {
+      margin-top: 5vh;
+      margin-left: 5vw;
+      transform: scale(4);
+      color: $tealblue;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    &__text {
+      font-size: $desktopheader;
+      margin-top: 5vh;
+      margin-left: 7vw;
+    }
+  }
+}

@@ -14,12 +14,7 @@ function FieldagentAssignments() {
   const [assignments_fieldagent, setAssignmentsFieldAgent] = useState([]);
   const [fieldagentname, setFieldAgentName] = useState([]);
   const userId = params.userid;
-  // console.log(userId);
   const fieldagent_name = "test";
-  // const encrypted_token = sessionStorage.getItem("clientAuthToken");
-  // const ejejej = decodeToken(encrypted_token);
-  // console.log(ejejej.userid);
-
   const fetchData = async (userId) => {
     axios
       .get(`http://localhost:8080/fieldagent/${userId}/assignments`, {
@@ -79,7 +74,6 @@ function FieldagentAssignments() {
   }
   return (
     <>
-      <h1>Welcome {fieldagentname}</h1>
       <h3>Find your assignments below</h3>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid

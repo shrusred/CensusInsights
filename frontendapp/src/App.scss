@@ -9,7 +9,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: $darkgray;
-  @include mob {
-    padding: 5vh 2vw 5vh 2vw;
-  }
+  // @include mob {
+  //   padding: 4vh 3vw 4vh 3vw;
+  // }
+  // @include des {
+  //   padding: 4vh 3vw 4vh 3vw;
+  // }
 }

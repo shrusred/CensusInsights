@@ -80,9 +80,8 @@ function Signoncomponent() {
   return (
     <div className="loginformcontainer">
       <div className="loginformcontainer__header">
-        <h1 className="loginformcontainer__header--text">Census Insights</h1>
-
         <AnalyticsIcon className="loginformcontainer__header--icon" />
+        <h1 className="loginformcontainer__header--text">Census Insights</h1>
       </div>
       <form className="loginformcontainer__form" onSubmit={handleSubmit}>
         <div className="loginformcontainer__form--inputs">
