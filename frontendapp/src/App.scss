@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
-
+@import "./styles/breakpoints";
+@import "./styles/colors";
+@import "./styles/mixins";
+@import "./styles/fontsize";
 body,
 html {
   font-family: "Raleway", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  color: $darkgray;
+  @include mob {
+    padding: 5vh 2vw 5vh 2vw;
+  }
 }

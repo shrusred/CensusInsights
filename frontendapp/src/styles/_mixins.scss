@@ -1,0 +1,13 @@
+@use './breakpoints' as bp;
+
+@mixin mob {
+  @media (min-width: bp.$mob_bpt_min) and (max-width: bp.$mob_bpt_max) {
+    @content;
+  }
+}
+
+@mixin des {
+  @media (min-width: bp.$des_bpt_min) {
+    @content;
+  }
+}

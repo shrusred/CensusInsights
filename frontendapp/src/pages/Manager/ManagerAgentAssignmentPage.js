@@ -9,7 +9,7 @@ function ManagerAgentAssignmentPage() {
       // setScreenSize({ width: window.innerWidth, height: window.innerHeight });
       const width = window.innerWidth;
       // console.log("this is the page width", width);
-      if (width > 900) {
+      if (width > 999) {
         setScreenSize("desktop");
       } else {
         setScreenSize("mobile");

@@ -1,0 +1,140 @@
+@import "../../App.scss";
+
+.loginformcontainer {
+  /////   MOBILE   ///////
+  @include mob {
+    margin: 20vh auto 0 auto;
+    width: 60vw;
+    min-width: $mob_bpt_min;
+    height: 70vh;
+    background-color: $lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 0 10px $lightgray;
+    &__header {
+      width: 50vw;
+      min-width: $mob_bpt_min;
+      display: flex;
+      justify-content: center;
+      margin-top: 5vh;
+      &--icon {
+        margin-top: 5vh;
+        margin-left: 2vw;
+        transform: scale(2.5);
+        color: $tealblue;
+      }
+      &--text {
+        margin: 5vh 1vw 5vh -5vw;
+        font-weight: bold;
+        font-size: $mobileheader;
+      }
+    }
+  }
+  ///// DESKTOP  /////
+  @include des {
+    margin: 20vh auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+    height: 50vh;
+    min-width: $des_bpt_min;
+    background-color: $lightgray;
+    box-shadow: 0 0 10px $lightgray;
+
+    &__header {
+      margin-top: 5vh;
+      margin-left: 5vw;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      &--icon {
+        transform: scale(4);
+        color: $tealblue;
+        margin-top: 1vh;
+        margin-left: 5vw;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      &--text {
+        margin-top: 5vh;
+        font-weight: bold;
+        font-size: $desktopheader;
+      }
+    }
+  }
+  //////////////  FORM   //////////////
+  &__form {
+    /////////// MOBILE ////////////////
+    @include mob {
+      display: flex;
+      margin-top: 10vh;
+      height: 30vh;
+      width: 40vw;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      &--inputs {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+      &--button {
+        background-color: $aquablue;
+        border: none;
+        font-size: $mobilebutton;
+        width: 20vw;
+        height: 5vh;
+        border-radius: 1vh;
+      }
+    }
+    //////////// DESKTOP  //////////////////
+    @include des {
+      margin-top: 5vh;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      &--inputs {
+        display: flex;
+        width: 90%;
+        box-sizing: border-box;
+      }
+      &--button {
+        background-color: $aquablue;
+        border: none;
+        border-radius: 1vh;
+        width: 20vw;
+        height: 5vh;
+        display: flex;
+        margin: 5vh 5vw;
+        font-size: $desktopbutton;
+        text-align: center;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 1vh 0;
+        color: $darkgray;
+      }
+    }
+  }
+}
+
+.input {
+  /////   MOBILE   /////////
+  @include mob {
+    width: 30vw;
+    height: 5vh;
+    font-size: $mobilefont;
+    margin: 2vh 10vw 2vh 10vw;
+  }
+  ///// DESKTOP   ///////////
+  @include des {
+    width: 50%;
+    height: 5vh;
+    margin: 1vh 5vw;
+    font-size: $desktopfont;
+  }
+}

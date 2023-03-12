@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
+import "../Signon/Signon.scss";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
 
 import {
   MDBBtn,
@@ -76,14 +78,28 @@ function Signoncomponent() {
   // };
 
   return (
-    <div>
-      <h1>Census Insights</h1>
-      {/* {!isLoggedIn && ( */}
-      <form onSubmit={handleSubmit}>
-        <h2>Please login</h2>
-        <input name="username" type="text" placeholder="User Name" />
-        <input name="password" type="password" placeholder="Password" />
-        <button>Submit</button>
+    <div className="loginformcontainer">
+      <div className="loginformcontainer__header">
+        <h1 className="loginformcontainer__header--text">Census Insights</h1>
+
+        <AnalyticsIcon className="loginformcontainer__header--icon" />
+      </div>
+      <form className="loginformcontainer__form" onSubmit={handleSubmit}>
+        <div className="loginformcontainer__form--inputs">
+          <input
+            className="input"
+            name="username"
+            type="text"
+            placeholder="User Name"
+          />
+          <input
+            className="input"
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <button className="loginformcontainer__form--button">LOGIN</button>
       </form>
       {/* )} */}
     </div>
