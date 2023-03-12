@@ -14,10 +14,20 @@ function ManagerHomeComp(props) {
   }
   return (
     <>
-      <button onClick={handleNavAllAssignments}>
-        View fieldagent assignments
-      </button>
-      <button onClick={handleNavPopStats}>View population statistics </button>
+      <div className="managerhomebox">
+        <button
+          onClick={handleNavAllAssignments}
+          className="managerhomebox__assignments"
+        >
+          View fieldagent assignments
+        </button>
+        <button
+          onClick={handleNavPopStats}
+          className="managerhomebox__statistics"
+        >
+          View population statistics
+        </button>
+      </div>
     </>
   );
 }

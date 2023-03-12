@@ -1,0 +1,63 @@
+@import "../../../App.scss";
+.managerhomebox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  @include mob {
+    margin: 0 20vw 10vh 20vw;
+    width: 70vw;
+    height: 60vh;
+    &__assignments {
+      max-width: 400px;
+      margin: 2vh 5vw 2vh 5vw;
+      height: 10vh;
+      width: 90%;
+      padding-left: 5%;
+      box-sizing: border-box;
+      font-size: $mobilefont;
+      border-radius: 1vh;
+      border: 1px solid $mediumgray;
+    }
+    &__statistics {
+      max-width: 400px;
+      margin: 2vh 5vw 2vh 5vw;
+      height: 10vh;
+      width: 90%;
+      padding-left: 5%;
+      box-sizing: border-box;
+      font-size: $mobilefont;
+      border-radius: 1vh;
+      border: 1px solid $mediumgray;
+    }
+  }
+  @include des {
+    width: 70vw;
+    height: 70vh;
+    &__assignments {
+      max-width: 450px;
+      margin: 5vh 10vw 5vh 40vw;
+      height: 10vh;
+      width: 40vw;
+      font-size: $desktopfont;
+      border-radius: 1vh;
+      padding-left: 5%;
+      box-sizing: border-box;
+      border: 1px solid $mediumgray;
+    }
+    &__statistics {
+      max-width: 450px;
+      margin: 5vh 10vw 5vh 40vw;
+      height: 10vh;
+      width: 40vw;
+      font-size: $desktopfont;
+      border-radius: 1vh;
+      padding-left: 5%;
+      box-sizing: border-box;
+      border: 1px solid $mediumgray;
+      font-size: $desktopfont;
+    }
+  }
+}
