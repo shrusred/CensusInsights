@@ -1,116 +1,177 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Button, Box, Grid, Typography } from "@mui/material";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
+import {
+  TextField,
+  Button,
+  Box,
+  Grid,
+  Typography,
+  Select,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
 import "../FieldagentDataForm/FieldagentDataForm.scss";
 
-function FieldAgentFormComp() {
-  const [householdsize, setHouseholdSize] = useState(1);
+function FieldAgentFormComp(props) {
+  const navigate = useNavigate();
+  const { assignmentid, userid } = useParams();
+  const userId = userid;
+
   const [inputFields, setInputFields] = useState([
-    { age: "", gender: "", occupation: "", income: "" },
+    { age: "", gender: "", ethnicity: "", occupation: "", income: 0 },
   ]);
 
-  const handleHouseholdInputChange = (event) => {
-    setHouseholdSize(event.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted form!!");
-  };
+  const [isAddDisabled, setIsAddDisabled] = useState(false);
+  const [isDeleteDisabled, setIsDeleteDisabled] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const handleFormChange = (index, event) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
     setInputFields(data);
   };
-  const addFields = (inp) => {
-    console.log("inside add fields, household size: ", inp);
-    // for (let i = 0; i < inp; i++) {
 
-    // let newfield = { age: "", gender: "", occupation: "", income: "" };
-    // setInputFields([...inputFields, newfield]);
-    // console.log("am in the addfields");
-    // setInputFields(newfield);
-    // }
-    let count = 0;
-    while (count < inp) {
-      // loop until count reaches 10
-      let newfield = { age: "", gender: "", occupation: "", income: "" };
-      setInputFields([...inputFields, newfield]);
-      count++; // increase count by 1 in each iteration
-      console.log(count); // print the current value of count to the console
-    }
-  };
-  const formSubmit = (e) => {
+  const submit = (e) => {
+    //post form data for this assignment to server with api post call
     e.preventDefault();
-    console.log(inputFields);
+    setIsFormSubmitted(true);
+    console.log(inputFields.length);
+  };
+  console.log(isFormSubmitted);
+
+  const addFields = (inp) => {
+    let newfield = {
+      age: "",
+      gender: "",
+      ethnicity: "",
+      occupation: "",
+      income: 0,
+    };
+    setInputFields([...inputFields, newfield]);
+  };
+  const deleteFields = (index) => {
+    let data = [...inputFields];
+    data.splice(index, 1);
+    setInputFields(data);
   };
 
-  // useEffect(() => {
-  //   addFields(householdsize);
-  // }, []);
-  // useEffect(() => {
-  //   addFields(householdsize);
-  // }, [householdsize]);
-
-  // console.log("this is the inputFields array", inputFields);
-
-  // useEffect(() => {
-  // addFields(2);
-  // }, []);
-  useEffect(() => {
-    addFields(5);
-  }, []);
-  // console.log(inputFields);
-  // console.log(householdsize);
   return (
     <>
-      <div>
-        <TextField
-          label="Members in household"
-          value={householdsize}
-          onChange={handleHouseholdInputChange}
-          InputProps={{ maxLength: 20 }}
-        />
-      </div>
-
-      {/* <div className="App">
-        <form>
+      <div className="censusdata">
+        <h2 className="censusdata__text1">
+          Collect data for assignment #{assignmentid}
+        </h2>
+        <h3 className="censusdata__text2">
+          Note: please collect data for each member of the household
+        </h3>
+        <form className="censusdataform">
           {inputFields.map((input, index) => {
             return (
               <div key={index}>
                 <input
+                  disabled={isFormSubmitted}
+                  type="number"
                   name="age"
                   placeholder="Age"
                   value={input.age}
                   onChange={(event) => handleFormChange(index, event)}
                 />
                 <input
+                  disabled={isFormSubmitted}
+                  type="text"
+                  list="genderlist"
                   name="gender"
                   placeholder="Gender"
                   value={input.gender}
                   onChange={(event) => handleFormChange(index, event)}
                 />
+                <datalist id="genderlist">
+                  <option>Female</option>
+                  <option>Male</option>
+                </datalist>
                 <input
+                  disabled={isFormSubmitted}
+                  type="text"
+                  list="ethnicitylist"
                   name="ethnicity"
                   placeholder="Ethnicity"
-                  value={input.gender}
+                  value={input.ethnicity}
                   onChange={(event) => handleFormChange(index, event)}
                 />
+                <datalist id="ethnicitylist">
+                  <option>Other</option>
+                  <option>African</option>
+                  <option>Asian</option>
+                  <option>Caucasian</option>
+                  <option>Latin American</option>
+                  <option>Middle Eastern</option>
+                  <option>Mixed</option>
+                  <option>Native</option>
+                  <option>South Asian</option>
+                  <option>Southeast Asian</option>
+                </datalist>
                 <input
+                  disabled={isFormSubmitted}
+                  type="text"
+                  list="occupationlist"
                   name="occupation"
                   placeholder="Occupation"
-                  value={input.gender}
+                  value={input.occupation}
                   onChange={(event) => handleFormChange(index, event)}
                 />
+                <datalist id="occupationlist">
+                  <option>Other</option>
+                  <option>Beauty</option>
+                  <option>Business Operations</option>
+                  <option>Education</option>
+                  <option>Engineering</option>
+                  <option>Food and Beverage</option>
+                  <option>Legal</option>
+                  <option>Logistics</option>
+                  <option>Management</option>
+                  <option>Medical, Wellness Services</option>
+                  <option>Research</option>
+                  <option>Retail</option>
+                  <option>Transportation</option>
+                </datalist>
+                <input
+                  disabled={isFormSubmitted}
+                  type="number"
+                  name="income"
+                  placeholder="Yearly Income"
+                  value={input.income}
+                  onChange={(event) => handleFormChange(index, event)}
+                />
+
+                <button
+                  className="censusdataform__removebutton"
+                  disabled={isFormSubmitted}
+                  onClick={() => deleteFields(index)}
+                >
+                  Delete
+                </button>
               </div>
             );
           })}
         </form>
-      </div> */}
-      <button onClick={addFields}>Add More..</button>
-      <button onClick={formSubmit}>Form Submit</button>
-      <Button variant="contained" color="primary">
-        Submit
-      </Button>
+
+        <button
+          className="censusdata__addbutton"
+          disabled={isFormSubmitted}
+          onClick={addFields}
+        >
+          Add household member data..
+        </button>
+        <br></br>
+        <button
+          className="censusdata__submitbutton"
+          type="submit"
+          onClick={submit}
+        >
+          Submit
+        </button>
+      </div>
     </>
   );
 }
@@ -188,3 +249,20 @@ export default FieldAgentFormComp;
 </Grid>
 </Box> */
 }
+
+/////input household number//////
+// const [householdsize, setHouseholdSize] = useState(0);
+{
+  /* <div>
+        <TextField
+          label="Members in household"
+          value={householdsize}
+          onChange={handleHouseholdInputChange}
+        />
+      </div> */
+}
+//// input household number change////
+// const handleHouseholdInputChange = (event) => {
+//   setHouseholdSize(event.target.value);
+//   // addFields(event.target.value);
+// };
