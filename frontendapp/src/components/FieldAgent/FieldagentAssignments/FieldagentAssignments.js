@@ -30,30 +30,26 @@ function FieldagentAssignments() {
       });
   };
 
-  const fetchName = async (userId) => {
-    axios
-      .get(`http://localhost:8080/fieldagent/${userId}`, {
-        params: {
-          id: userId,
-        },
-      })
-      .then((response) => {
-        // console.log("am in the fetch name", response.data[0].fieldagentname);
-        setFieldAgentName(response.data[0].fieldagentname);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const fetchName = async (userId) => {
+  //   axios
+  //     .get(`http://localhost:8080/fieldagent/${userId}`, {
+  //       params: {
+  //         id: userId,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       // console.log("am in the fetch name", response.data[0].fieldagentname);
+  //       setFieldAgentName(response.data[0].fieldagentname);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   useEffect(() => {
     fetchData(userId);
-    fetchName(userId);
+    // fetchName(userId);
   }, []);
-  // console.log(
-  //   "this is the latest assignment object for the fieldagent",
-  //   assignments_fieldagent
-  // );
 
   const columns = [
     { field: "id", headerName: "Assignment#", width: 100 },
@@ -69,12 +65,11 @@ function FieldagentAssignments() {
 
   function handleRowClick(params) {
     console.log(params.row.id);
-    // Add later: Handle the click event for the selected row
     navigate(`/fieldagent/verify/${userId}/${params.row.id}`);
   }
   return (
     <>
-      <h3>Find your assignments below</h3>
+      <h3>The following assignments have not had census data collected yet</h3>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={rows}
@@ -88,13 +83,3 @@ function FieldagentAssignments() {
   );
 }
 export default FieldagentAssignments;
-
-////////////////////////////////////////////////
-//1. alternate way to access the name of the person who logged in
-// const [fieldagentname, setFieldagentname] = useState("");
-
-// useEffect(() => {
-//   var encrypted_token = sessionStorage.getItem("clientAuthToken");
-//   const decrypted_fieldagentname = decodeToken(encrypted_token);
-//   setFieldagentname(decrypted_fieldagentname.name);
-// }, []);

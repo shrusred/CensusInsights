@@ -63,7 +63,7 @@ function getUser(id) {
 }
 //.3 function to get the fieldagent's assignments based on id based
 function getFieldagentAssignments(id) {
-  const fieldagent_assignments_query = `SELECT assignmentid as id,street,city,postalcode,date_format(assignment_date,'%Y-%m-%d') as assignment_date,latitude,longitude FROM assignments where fieldagent_id=${id};`;
+  const fieldagent_assignments_query = `SELECT assignmentid as id,street,city,postalcode,date_format(assignment_date,'%Y-%m-%d') as assignment_date,latitude,longitude FROM assignments where fieldagent_id=${id} and assignmentid NOT IN (SELECT DISTINCT assignment_id FROM censusdata);`;
   return new Promise((resolve, reject) => {
     connection.query(fieldagent_assignments_query, (error, results, fields) => {
       if (error) {
@@ -228,6 +228,33 @@ app.delete("/assignment/:assignmentid", (req, res) => {
   connection.query(query, (error, results, fields) => {
     if (error) throw error;
     return res.status(200).send("Assignment deleted!");
+  });
+});
+// 5. ADD censusdata Logic to be implemented
+app.post("/census/:assignmentid", (req, res) => {
+  var values = [];
+  req.body.map((obj) => {
+    let item = [
+      req.params.assignmentid,
+      obj.age,
+      obj.ethnicity,
+      obj.gender,
+      obj.income,
+      obj.occupation,
+      req.body.length,
+    ];
+    values.push(item);
+  });
+  let query = `insert into censusdata (assignment_id,age,ethnicity,gender,income,occupation,householdnumber) VALUES ?;`;
+  connection.query(query, [values], (error, results, fields) => {
+    if (error) {
+      console.log(error);
+      return res
+        .status(400)
+        .send(
+          "Census data already updated for this assignmentID or data sent in wrong format"
+        );
+    } else return res.status(200).send("Census data for assignment added!");
   });
 });
 //////////////// AUTHORIZATION  //////////////////

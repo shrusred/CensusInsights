@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import axios from "axios";
 import {
   TextField,
   Button,
@@ -36,9 +37,16 @@ function FieldAgentFormComp(props) {
     //post form data for this assignment to server with api post call
     e.preventDefault();
     setIsFormSubmitted(true);
-    console.log(inputFields.length);
+    axios
+      .post(`http://localhost:8080/census/${assignmentid}`, inputFields)
+      .then((response) => {
+        console.log(response.data); // handle success
+      })
+      .catch((error) => {
+        console.error(error); // handle error
+      });
+    // console.log(inputFields);
   };
-  console.log(isFormSubmitted);
 
   const addFields = (inp) => {
     let newfield = {
