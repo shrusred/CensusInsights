@@ -115,6 +115,17 @@ function getManagerAssignments(id) {
     });
   });
 }
+function getCensus(managerid) {
+  const census_query = `select a.assignmentid,m.managername,g.municipality_name,g.region_name,c.age,c.householdnumber,c.income,c.occupation,c.gender,c.ethnicity from geo g join assignments a on a.city=g.municipality_name join manager m on m.region_id=g.regionid join censusdata c on c.assignment_id=a.assignmentid where m.managerid=${managerid};`;
+  return new Promise((resolve, reject) => {
+    connection.query(census_query, (error, results, fields) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(results);
+    });
+  });
+}
 //7.function to read file: locationphotoJSON
 function readLocationphoto() {
   const locationphotoFile = fs.readFileSync(locationphotoJSON);
@@ -340,6 +351,12 @@ app.get("/manager/:id", async (req, res) => {
 app.get("/manager/:id/assignments", async (req, res) => {
   const manager_Assignments = await getManagerAssignments(req.params.id);
   return res.send(manager_Assignments);
+});
+
+// . Get census data and region data for manager
+app.get("/manager/:id/census", async (req, res) => {
+  const manager_census = await getCensus(req.params.id);
+  return res.send(manager_census);
 });
 
 //app.patch
