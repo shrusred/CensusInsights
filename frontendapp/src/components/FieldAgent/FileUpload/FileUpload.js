@@ -1,21 +1,41 @@
 import React from "react";
 import { useParams } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 import "../FileUpload/FileUpload.scss";
-// import axios from "axios";
-////
-//{ file, setFile }
+import { useNavigate } from "react-router";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
+
 const FileUpload = () => {
+  const navigate = useNavigate();
   let { assignmentid, userid } = useParams();
-  // console.log("assignment id is", assignmentid);
-  // console.log("userid is", userid);
+  const [verifiedopen, setVerifiedOpen] = useState(false);
+  const [unverifiedopen, setUnverifiedOpen] = useState(false);
+
+  const handleVerifiedDialogOpen = () => {
+    setVerifiedOpen(true);
+  };
+  const handleUnverifiedDialogOpen = () => {
+    setUnverifiedOpen(true);
+  };
+
+  const handleVerifiedDialogClose = () => {
+    setVerifiedOpen(false);
+    navigate(`/fieldagent/${userid}/form/${assignmentid}`);
+  };
+  const handleUnverifiedDialogClose = () => {
+    setUnverifiedOpen(false);
+  };
 
   const uploadHandler = (event) => {
     console.log("am in uploadhandler");
-
     const filechosen = event.target.files[0];
-    console.log(filechosen);
+    // console.log(filechosen);
     fetch(`http://localhost:8080/assignment/${assignmentid}/image`, {
       method: "post",
       body: filechosen,
@@ -23,20 +43,19 @@ const FileUpload = () => {
       .then((res) => {
         console.log("response", res);
         console.log("am sending the assignment id and file to the backend");
-        alert("You have successfully uploaded the picture to our server");
+
+        handleVerifiedDialogOpen();
       })
       .catch((err) => {
-        //send message to user
+        //send error message to user
         console.error(err);
+        handleUnverifiedDialogOpen();
       });
   };
 
   return (
     <>
-      <h2>This is assignment # {assignmentid}</h2>
-      <h3>
-        Upload a picture of the location of your assignment for validation
-      </h3>
+      <h3>Upload a picture of assignment location for verification</h3>
       <div className="fileupload">
         <div className="fileinput">
           <input type="file" onChange={uploadHandler} />
@@ -44,47 +63,45 @@ const FileUpload = () => {
         <div className="fileinput-info">
           <p>Supports files of type .png, .jpeg, .jpg</p>
         </div>
-        <button>SUBMIT</button>
+      </div>
+      <div className="verified_dialogbox">
+        <Dialog open={verifiedopen} onClose={handleVerifiedDialogClose}>
+          <DialogTitle>Verified!</DialogTitle>
+          <DialogContent>
+            <p>Photo upload successful, you can now start data collection</p>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleVerifiedDialogClose}
+              variant="contained"
+              autoFocus
+              className="dialogbox_button"
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+      <div className="unverified_dialogbox">
+        <Dialog open={unverifiedopen} onClose={handleUnverifiedDialogClose}>
+          <DialogTitle>Unable to verify!</DialogTitle>
+          <DialogContent>
+            <p>Photo upload unsuccessful</p>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleUnverifiedDialogClose}
+              variant="contained"
+              autoFocus
+              className="dialogbox_button"
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </>
   );
 };
 
 export default FileUpload;
-/////////   SOME PREVIOUS WORK -- DELETE LATER IF FOUND TO BE IRRELEVANT   ////////////////////
-
-// filechosen.isUploading = true;
-// console.log(filechosen);
-// setFile(filechosen);
-// //upload file
-// const formData = new FormData();
-
-// //1.stringify
-// //2.App json to multipart formData-blob
-// formData.append(filechosen.name, filechosen, filechosen.name);
-// console.log(formData);
-// axios
-//   .post("http://localhost:8080/photoupload", formData)
-//   .then((res) => {
-//     console.log("am in the post");
-//     filechosen.isUploading = false;
-//     console.log(filechosen);
-//     setFile(filechosen);
-//   })
-//   .catch((err) => {
-//     //send message to user
-//     console.error(err);
-//     // removeFile(filechosen.name);
-//     setFile();
-//   });
-////// attempt 2
-
-///return
-{
-  /* <button>
-            <i>
-              <FontAwesomeIcon icon={faPlus} />
-            </i>
-            Upload
-          </button> */
-}

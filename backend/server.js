@@ -74,6 +74,23 @@ function getFieldagentAssignments(id) {
     });
   });
 }
+// function to get the fieldagent's particular assignment for verification
+
+function getFieldagentAssignmentVerify(userid, assignmentid) {
+  const fieldagent_assignment_verify_query = `SELECT * FROM assignments where fieldagent_id=${userid} and assignmentid =${assignmentid};`;
+  return new Promise((resolve, reject) => {
+    connection.query(
+      fieldagent_assignment_verify_query,
+      (error, results, fields) => {
+        if (error) {
+          reject(error);
+        }
+        console.log(results);
+        resolve(results);
+      }
+    );
+  });
+}
 //4. Function to get fieldagent information
 function getFieldagentInfo(id) {
   const fieldagent_info_query = `select fieldagentid,fieldagentname,latitude,longitude from fieldagent where fieldagentid=${id};`;
@@ -357,6 +374,16 @@ app.get("/manager/:id/assignments", async (req, res) => {
 app.get("/manager/:id/census", async (req, res) => {
   const manager_census = await getCensus(req.params.id);
   return res.send(manager_census);
+});
+
+// Get particular assignment of field agent for verification
+
+app.get("/verify/:userid/assignment/:assignmentid", async (req, res) => {
+  const assignment_verify = await getFieldagentAssignmentVerify(
+    req.params.userid,
+    req.params.assignmentid
+  );
+  return res.send(assignment_verify);
 });
 
 //app.patch
