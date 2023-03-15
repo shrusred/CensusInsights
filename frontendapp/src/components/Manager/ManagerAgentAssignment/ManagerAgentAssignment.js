@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import {
@@ -17,10 +16,13 @@ import {
   MenuItem,
   useThemeProps,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { green } from "@mui/material/colors";
+import "../ManagerAgentAssignment/ManagerAgentAssignment.scss";
 
 function Assignments({ screenSize }) {
+  const navigate = useNavigate();
   const params = useParams();
   const userId = params.userid;
   const [rows, setRows] = useState([]);
@@ -37,7 +39,7 @@ function Assignments({ screenSize }) {
       longitude: 0,
     },
   ]);
-  console.log(newrow[0].city);
+  // console.log(newrow[0].city);
 
   const [editableRowIndex, setEditableRowIndex] = useState(null);
 
@@ -47,7 +49,7 @@ function Assignments({ screenSize }) {
       .get(`http://localhost:8080/manager/${userId}/assignments`)
       .then((response) => {
         // console.log("am in the fetch manager assignments", response.data);
-        console.log("rows", rows);
+        // console.log("rows", rows);
         setRows(response.data);
         /////////////  city options   ///////////////////
         const city_key = "city";
@@ -109,7 +111,7 @@ function Assignments({ screenSize }) {
       .then((response) => {
         // console.log("am in the fetch manager assignments", response.data);
         fetchManagerAssignments(userId);
-        console.log(response);
+        // console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -126,7 +128,7 @@ function Assignments({ screenSize }) {
     axios
       .post("http://localhost:8080/assignment", newrow[0])
       .then((response) => {
-        console.log("Response of post assignment:", response.data);
+        // console.log("Response of post assignment:", response.data);
       })
       .catch((error) => {
         console.error("Error of post assignment:", error);
@@ -141,7 +143,7 @@ function Assignments({ screenSize }) {
     // longitude
     // postalcode
     // street
-    console.log(event);
+    // console.log(event);
 
     if (key === "fieldagentname") {
       const find_faname = event.target.value;
@@ -171,9 +173,7 @@ function Assignments({ screenSize }) {
     // console.log("new row", newrow[0]);
     setRows(newRows);
   };
-  function handleRowChange(e) {
-    console.log("akakakakakakakakakakaka", e.target);
-  }
+
   ////TESTING VARIOUS FUNCTIONALITIES
   ///// 1. testing post assignment api
   const testpostData = {
@@ -184,201 +184,199 @@ function Assignments({ screenSize }) {
     latitude: 43.86,
     longitude: -79.79,
   };
-
-  // axios
-  //   .post("http://localhost:8080/assignment", testpostData)
-  //   .then((response) => {
-  //     console.log("Response of post:", response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error of post:", error);
-  //   });
-  // console.log(rows);
-
-  // const [value, setValue] = React.useState("");
-  // const handleSelectChange = (event) => {
-  //   setValue(event.target.value);
-  // };
-
-  if (screenSize === "mobile") {
-    return (
-      <>
-        <h1>THIS IS THE MOBILE CONTENT</h1>
-      </>
-    );
+  function handleBackButtonClick() {
+    navigate(`/manager/home/${userId}`);
   }
-  console.log("agentoptions:", agentoptions);
+
+  // if (screenSize === "mobile") {
+  //   return (
+  //     <>
+  //       <h1>THIS IS THE MOBILE CONTENT</h1>
+  //     </>
+  //   );
+  // }
+  // console.log("agentoptions:", agentoptions);
   return (
     <>
-      <h1>Your Fieldagents' assignments</h1>
+      <ArrowBackIcon
+        className="backbutton"
+        onClick={handleBackButtonClick}
+      ></ArrowBackIcon>
+      <div className="agentassignments">
+        <div className="agentassignments__header">
+          <h3 className="agentassignments__header--prompt">
+            Your Fieldagents' assignments
+          </h3>
+          <p className="agentassignments__header--note">Note:</p>
+          <p className="agentassignments__header--note">
+            *click add row &rarr; click edit row to add new entry &rarr; click
+            save row to save new entry &rarr; refresh page to see entry on page
+          </p>
+          <p className="agentassignments__header--note">
+            **format of new entry must match that of old entries
+          </p>
+        </div>
 
-      <TableContainer
-        component={Paper}
-        sx={{
-          maxHeight: "600px",
-          overflowY: "auto",
-          overflowX: "auto",
-          maxWidth: "1300px",
-        }}
-      >
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>AssignmentID</TableCell>
-              {/* <TableCell>AgentID</TableCell> */}
-              <TableCell>Agent Name</TableCell>
-              <TableCell>Street</TableCell>
-              <TableCell>City</TableCell>
-              <TableCell>Postal Code</TableCell>
-              <TableCell>Lat</TableCell>
-              <TableCell>Long</TableCell>
-              <TableCell>Census done?</TableCell>
-              {/* <TableCell>Delete?</TableCell> */}
-              <TableCell>Edit?</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow key={row.id} onChange={(e) => handleRowChange(e)}>
-                <TableCell>{row.id}</TableCell>
-                {/**********************************************************************************************/}
-                {/* <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      value={row.fieldagentid}
-                      onChange={(event) =>
-                        handleChange(event, index, "fieldagentid")
-                      }
-                    />
-                  ) : (
-                    row.fieldagentid
-                  )}
-                </TableCell> */}
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      select
-                      value={row.fieldagentname}
-                      onChange={(event) =>
-                        handleChange(event, index, "fieldagentname")
-                      }
-                    >
-                      {agentoptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  ) : (
-                    row.fieldagentname
-                  )}
-                </TableCell>
-
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      value={row.street}
-                      onChange={(event) => handleChange(event, index, "street")}
-                    />
-                  ) : (
-                    row.street
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      select
-                      value={row.city}
-                      onChange={(event) => handleChange(event, index, "city")}
-                    >
-                      {cityoptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  ) : (
-                    row.city
-                  )}
-                </TableCell>
-
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      value={row.postalcode}
-                      onChange={(event) =>
-                        handleChange(event, index, "postalcode")
-                      }
-                    />
-                  ) : (
-                    row.postalcode
-                  )}
-                </TableCell>
-
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      value={row.latitude}
-                      onChange={(event) =>
-                        handleChange(event, index, "latitude")
-                      }
-                    />
-                  ) : (
-                    row.latitude
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <TextField
-                      value={row.longitude}
-                      onChange={(event) =>
-                        handleChange(event, index, "longitude")
-                      }
-                    />
-                  ) : (
-                    row.longitude
-                  )}
-                </TableCell>
-                <TableCell>
-                  <CheckBoxIcon
-                    style={{
-                      display: row.censusassignment ? "inline-block" : "none",
-                      color: green[500],
-                    }}
-                  />
-                </TableCell>
-                <TableCell>
-                  {/* <Button
-                    onClick={() => {
-                      handleRowDelete(row.id);
-                    }}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Yes
-                  </Button> */}
-                </TableCell>
-
-                <TableCell>
-                  {editableRowIndex === index ? (
-                    <button onClick={() => handleRowSave(index)}>Save</button>
-                  ) : (
-                    <button
-                      disabled={row.id}
-                      onClick={() => handleRowEdit(index)}
-                    >
-                      {"Edit"}
-                    </button>
-                  )}
-                </TableCell>
+        <TableContainer
+          component={Paper}
+          sx={{
+            maxHeight: "1000px",
+            overflowY: "auto",
+            overflowX: "auto",
+            maxWidth: "1300px",
+          }}
+          className="agentassignments__tablecontainer"
+        >
+          <Table aria-label="simple table">
+            <TableHead className="agentassignments__tablecontainer--header">
+              <TableRow>
+                <TableCell style={{ color: "white" }}>AssignmentID</TableCell>
+                <TableCell style={{ color: "white" }}>Agent Name</TableCell>
+                <TableCell style={{ color: "white" }}>Street</TableCell>
+                <TableCell style={{ color: "white" }}>City</TableCell>
+                <TableCell style={{ color: "white" }}>Postal Code</TableCell>
+                <TableCell style={{ color: "white" }}>Lat</TableCell>
+                <TableCell style={{ color: "white" }}>Long</TableCell>
+                <TableCell style={{ color: "white" }}>Census done?</TableCell>
+                <TableCell style={{ color: "white" }}>Edit</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <Button variant="contained" color="primary" onClick={handleAddRow}>
-          Add Row
-        </Button>
-      </TableContainer>
+            </TableHead>
+            <TableBody className="agentassignments__tablecontainer--body">
+              {rows.map((row, index) => (
+                <TableRow
+                  key={row.id}
+                  className="agentassignments__tablecontainer--row"
+                >
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {row.id}
+                  </TableCell>
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        select
+                        value={row.fieldagentname}
+                        onChange={(event) =>
+                          handleChange(event, index, "fieldagentname")
+                        }
+                      >
+                        {agentoptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    ) : (
+                      row.fieldagentname
+                    )}
+                  </TableCell>
+
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        value={row.street}
+                        onChange={(event) =>
+                          handleChange(event, index, "street")
+                        }
+                      />
+                    ) : (
+                      row.street
+                    )}
+                  </TableCell>
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        select
+                        value={row.city}
+                        onChange={(event) => handleChange(event, index, "city")}
+                      >
+                        {cityoptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    ) : (
+                      row.city
+                    )}
+                  </TableCell>
+
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        value={row.postalcode}
+                        onChange={(event) =>
+                          handleChange(event, index, "postalcode")
+                        }
+                      />
+                    ) : (
+                      row.postalcode
+                    )}
+                  </TableCell>
+
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        value={row.latitude}
+                        onChange={(event) =>
+                          handleChange(event, index, "latitude")
+                        }
+                      />
+                    ) : (
+                      row.latitude
+                    )}
+                  </TableCell>
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <TextField
+                        value={row.longitude}
+                        onChange={(event) =>
+                          handleChange(event, index, "longitude")
+                        }
+                      />
+                    ) : (
+                      row.longitude
+                    )}
+                  </TableCell>
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    <CheckBoxIcon
+                      style={{
+                        display: row.censusassignment ? "inline-block" : "none",
+                        color: green[500],
+                      }}
+                    />
+                  </TableCell>
+
+                  <TableCell className="agentassignments__tablecontainer--cell">
+                    {editableRowIndex === index ? (
+                      <button
+                        onClick={() => handleRowSave(index)}
+                        className="agentassignments__tablecontainer--editbutton"
+                      >
+                        Save
+                      </button>
+                    ) : (
+                      <button
+                        disabled={row.id}
+                        onClick={() => handleRowEdit(index)}
+                      >
+                        {"Edit"}
+                      </button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Button
+            className="addrowbutton"
+            variant="contained"
+            style={{ backgroundColor: "#8de3df", color: "#393e46" }}
+            onClick={handleAddRow}
+          >
+            Add Row
+          </Button>
+        </TableContainer>
+      </div>
     </>
   );
 }

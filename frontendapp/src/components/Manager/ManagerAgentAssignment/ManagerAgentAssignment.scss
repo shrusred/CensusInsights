@@ -1,0 +1,63 @@
+@import "../../../App.scss";
+.backbutton {
+  color: $tealblue;
+  transform: scale(2);
+  margin-left: 2vw;
+  margin-top: 2vh;
+}
+.agentassignments {
+  @include mob {
+    margin-top: 3vh;
+    width: 95%;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    box-shadow: 0 0 10px 5px $lightgray;
+    box-sizing: border-box;
+    &__header {
+      padding-top: 1%;
+      padding-left: 1%;
+    }
+  }
+  @include des {
+    margin-top: 3vh;
+    width: 95%;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+    box-shadow: 0 0 10px 5px $lightgray;
+    box-sizing: border-box;
+    font-family: "Raleway";
+    &__header {
+      padding-top: 1%;
+      padding-left: 1%;
+
+      &--prompt {
+        font-size: 1.25rem;
+      }
+      &--note {
+        font-size: 1.125rem;
+      }
+    }
+    &__tablecontainer {
+      font-size: 1.125rem;
+      &--addrowbutton {
+        color: $darkgray;
+        background-color: $aquablue;
+      }
+      &--header {
+        font-size: 1.25rem;
+        background-color: $tealblue;
+        color: white;
+        font-weight: bold;
+      }
+      &--headercell {
+        color: white;
+      }
+    }
+  }
+}
+
+.addrowbutton {
+  background-color: $aquablue;
+  color: $darkgray;
+}
