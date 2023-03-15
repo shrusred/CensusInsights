@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
+body,
+html {
+  font-family: "Raleway", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #393e46;
+}
+
+.backbutton {
+  color: #3b7b9a;
+  transform: scale(2);
+  margin-left: 2vw;
+  margin-top: 2vh;
+}
+
+@media (min-width: 360px) and (max-width: 999px) {
+  .agentassignments {
+    margin-top: 3vh;
+    width: 95%;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    box-shadow: 0 0 10px 5px #eeeeee;
+    box-sizing: border-box;
+  }
+  .agentassignments__header {
+    padding-top: 2%;
+    padding-left: 3%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .agentassignments__tablecontainer {
+    font-size: 1.125rem;
+    margin-bottom: 2vh;
+    width: 90vw;
+  }
+  .agentassignments__tablecontainer--addrowbutton {
+    color: #393e46;
+    background-color: #8de3df;
+  }
+  .agentassignments__tablecontainer--header {
+    font-size: 1.25rem;
+    background-color: #3b7b9a;
+    color: white;
+    font-weight: bold;
+  }
+  .agentassignments__tablecontainer--headercell {
+    color: white;
+  }
+}
+@media (min-width: 1000px) {
+  .agentassignments {
+    margin-top: 3vh;
+    width: 95%;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+    box-shadow: 0 0 10px 5px #eeeeee;
+    box-sizing: border-box;
+    font-family: "Raleway";
+  }
+  .agentassignments__header {
+    padding-top: 1%;
+    padding-left: 1%;
+  }
+  .agentassignments__header--prompt {
+    font-size: 1.25rem;
+  }
+  .agentassignments__header--note {
+    font-size: 1.125rem;
+  }
+  .agentassignments__tablecontainer {
+    font-size: 1.125rem;
+  }
+  .agentassignments__tablecontainer--addrowbutton {
+    color: #393e46;
+    background-color: #8de3df;
+  }
+  .agentassignments__tablecontainer--header {
+    font-size: 1.25rem;
+    background-color: #3b7b9a;
+    color: white;
+    font-weight: bold;
+  }
+  .agentassignments__tablecontainer--headercell {
+    color: white;
+  }
+}
+
+.addrowbutton {
+  background-color: #8de3df;
+  color: #393e46;
+}/*# sourceMappingURL=ManagerAgentAssignment.css.map */

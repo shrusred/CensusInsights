@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
+body,
+html {
+  font-family: "Raleway", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #393e46;
+}
+
+@media (min-width: 360px) and (max-width: 999px) {
+  .loginformcontainer {
+    margin: 20vh auto 0 auto;
+    width: 60vw;
+    min-width: 360px;
+    height: 70vh;
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 0 10px #eeeeee;
+  }
+  .loginformcontainer__header {
+    width: 50vw;
+    min-width: 360px;
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+  }
+  .loginformcontainer__header--icon {
+    margin-top: 5vh;
+    margin-left: 1vw;
+    transform: scale(2.5);
+    color: #3b7b9a;
+  }
+  .loginformcontainer__header--text {
+    margin: 5vh 1vw 5vh 3vw;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+@media (min-width: 1000px) {
+  .loginformcontainer {
+    margin: 20vh auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+    height: 50vh;
+    min-width: 1000px;
+    background-color: #eeeeee;
+    box-shadow: 0 0 10px #eeeeee;
+  }
+  .loginformcontainer__header {
+    margin-top: 5vh;
+    margin-left: 5vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .loginformcontainer__header--icon {
+    transform: scale(4);
+    color: #3b7b9a;
+    margin-top: 1vh;
+    margin-left: 3vw;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .loginformcontainer__header--text {
+    margin-top: 5vh;
+    margin-left: 7vw;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+@media (min-width: 360px) and (max-width: 999px) {
+  .loginformcontainer__form {
+    display: flex;
+    margin-top: 5vh;
+    height: 30vh;
+    width: 40vw;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+  }
+  .loginformcontainer__form--inputs {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .loginformcontainer__form--button {
+    background-color: #8de3df;
+    border: none;
+    font-size: 18px;
+    color: #393e46;
+    width: 20vw;
+    height: 5vh;
+    border-radius: 1vh;
+  }
+}
+@media (min-width: 1000px) {
+  .loginformcontainer__form {
+    margin-top: 5vh;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .loginformcontainer__form--inputs {
+    display: flex;
+    width: 90%;
+    box-sizing: border-box;
+  }
+  .loginformcontainer__form--button {
+    background-color: #8de3df;
+    border: none;
+    border-radius: 1vh;
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    margin: 5vh 5vw;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 1vh 0;
+    color: #393e46;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 999px) {
+  .input {
+    width: 30vw;
+    height: 5vh;
+    font-size: 16px;
+    margin: 2vh 10vw 2vh 10vw;
+  }
+}
+@media (min-width: 1000px) {
+  .input {
+    width: 50%;
+    height: 5vh;
+    margin: 1vh 5vw;
+    font-size: 18px;
+  }
+}/*# sourceMappingURL=Signon.css.map */

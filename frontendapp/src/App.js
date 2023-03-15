@@ -4,7 +4,6 @@ import Login from "./pages/Login/LoginPage";
 import Popstats from "./pages/Manager/PopulationStatsPage";
 import ManagerMain from "./pages/Manager/ManagerMainPage.js";
 import ManagerAgentAssign from "./pages/Manager/ManagerAgentAssignmentPage.js";
-import TestP from "./pages/testpage.js";
 import FieldagentMain from "./pages/Fieldagent/FieldagentMainPage.js";
 import FieldAgentFormP from "./pages/Fieldagent/FieldagentFormPage.js";
 import "./App.scss";
@@ -33,7 +32,6 @@ function App() {
             path="/fieldagent/:userid/form/:assignmentid"
             element={<FieldAgentFormP />}
           />
-          <Route path="/test" element={<TestP />} />
         </Routes>
       </BrowserRouter>
     </>

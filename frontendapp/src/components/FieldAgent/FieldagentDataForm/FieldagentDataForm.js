@@ -2,16 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import {
-  TextField,
-  Button,
-  Box,
-  Grid,
-  Typography,
-  Select,
-  MenuItem,
-  FormControl,
-} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "../FieldagentDataForm/FieldagentDataForm.scss";
 
 function FieldAgentFormComp(props) {
@@ -54,7 +45,7 @@ function FieldAgentFormComp(props) {
       gender: "",
       ethnicity: "",
       occupation: "",
-      income: 0,
+      income: "0",
     };
     setInputFields([...inputFields, newfield]);
   };
@@ -66,18 +57,25 @@ function FieldAgentFormComp(props) {
 
   return (
     <>
+      <div className="fieldagentdataback">
+        <ArrowBackIcon />
+      </div>
+
       <div className="censusdata">
-        <h2 className="censusdata__text1">
-          Collect data for assignment #{assignmentid}
-        </h2>
-        <h3 className="censusdata__text2">
-          Note: please collect data for each member of the household
-        </h3>
-        <form className="censusdataform">
+        <div className="censusdata__header">
+          <h3 className="censusdata__header--text1">
+            Collect data for assignment #{assignmentid}
+          </h3>
+          <p className="censusdata__header--text2">
+            Note: please collect data for each member of the household
+          </p>
+        </div>
+        <form className="censusdata__form">
           {inputFields.map((input, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="censusdata__forminput">
                 <input
+                  className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
                   type="number"
                   name="age"
@@ -86,6 +84,7 @@ function FieldAgentFormComp(props) {
                   onChange={(event) => handleFormChange(index, event)}
                 />
                 <input
+                  className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
                   type="text"
                   list="genderlist"
@@ -99,6 +98,7 @@ function FieldAgentFormComp(props) {
                   <option>Male</option>
                 </datalist>
                 <input
+                  className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
                   type="text"
                   list="ethnicitylist"
@@ -120,6 +120,7 @@ function FieldAgentFormComp(props) {
                   <option>Southeast Asian</option>
                 </datalist>
                 <input
+                  className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
                   type="text"
                   list="occupationlist"
@@ -144,16 +145,17 @@ function FieldAgentFormComp(props) {
                   <option>Transportation</option>
                 </datalist>
                 <input
+                  className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
                   type="number"
                   name="income"
-                  placeholder="Yearly Income"
+                  placeholder="Income"
                   value={input.income}
                   onChange={(event) => handleFormChange(index, event)}
                 />
 
                 <button
-                  className="censusdataform__removebutton"
+                  className="censusdata__forminput--deletebutton"
                   disabled={isFormSubmitted}
                   onClick={() => deleteFields(index)}
                 >
@@ -165,9 +167,9 @@ function FieldAgentFormComp(props) {
         </form>
 
         <button
-          className="censusdata__addbutton"
           disabled={isFormSubmitted}
           onClick={addFields}
+          className="addformbutton"
         >
           Add household member data..
         </button>
