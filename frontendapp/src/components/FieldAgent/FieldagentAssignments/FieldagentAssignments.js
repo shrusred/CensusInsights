@@ -64,21 +64,30 @@ function FieldagentAssignments() {
   const rows = assignments_fieldagent;
 
   function handleRowClick(params) {
-    console.log(params.row.id);
+    // console.log(params.row.id);
     navigate(`/fieldagent/verify/${userId}/${params.row.id}`);
   }
   return (
     <>
-      <h3>The following assignments have not had census data collected yet</h3>
-      <Box sx={{ height: 400, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[3]}
-          onRowClick={handleRowClick}
-        />
-      </Box>
+      <div className="fieldagentassignments">
+        <h3 className="fieldagentassignments__heading">
+          Click row to start data collection
+        </h3>
+
+        <Box
+          sx={{ height: "800px", width: "95%" }}
+          className="fieldagentassignments__box"
+        >
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[3]}
+            onRowClick={handleRowClick}
+            className="fieldagentassignments__box--datagrid"
+          />
+        </Box>
+      </div>
     </>
   );
 }

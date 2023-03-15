@@ -1,0 +1,43 @@
+@import "../../../App.scss";
+
+.fieldagentassignments {
+  @include mob {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+
+    &__heading {
+      margin-left: 4vw;
+      margin-top: 5vh;
+      font-size: 18px;
+      color: $darkgray;
+    }
+    &__box {
+      margin-left: 2vw;
+      width: 95vw;
+      min-width: 20.625rem;
+      &--datagrid {
+        box-shadow: 0 0 10px #fff;
+      }
+    }
+  }
+  @include des {
+    height: 100%;
+    min-height: 800px;
+    &__heading {
+      font-size: 1.25rem;
+      color: $darkgray;
+      margin-left: 7vw;
+      margin-top: 7vh;
+      margin-bottom: 7vh;
+      font-family: "Raleway";
+    }
+    &__box {
+      box-shadow: 0 0 10px $lightgray;
+      width: 92vw;
+      margin-left: 5vw;
+      margin-right: 2vw;
+      margin-bottom: 5vh;
+    }
+  }
+}
