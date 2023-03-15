@@ -10,9 +10,11 @@ html {
 @media (min-width: 360px) and (max-width: 999px) {
   .censusdata {
     display: flex;
+    height: 100vh;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
   }
   .censusdata__header {
     width: 90vw;
@@ -62,6 +64,9 @@ html {
     border: none;
     border-radius: 4px;
   }
+  .censusdata__forminput--deletebutton:disabled {
+    opacity: 0.5;
+  }
   .censusdata__submitbutton {
     background-color: #8de3df;
     border: none;
@@ -72,6 +77,9 @@ html {
   }
 }
 @media (min-width: 1000px) {
+  .censusdata {
+    height: 100vh;
+  }
   .censusdata__header {
     display: flex;
     flex-direction: column;
@@ -112,6 +120,9 @@ html {
     color: #393e46;
     border: none;
     border-radius: 0.25rem;
+  }
+  .censusdata__forminput--deletebutton:disabled {
+    opacity: 0.5;
   }
   .censusdata__submitbutton {
     margin-top: 2vh;
@@ -157,4 +168,13 @@ html {
     margin-top: 0.875rem;
     margin-bottom: 2vh;
   }
+}
+
+.addformbutton:disabled {
+  opacity: 0.5;
+}
+
+.dialogbox_button {
+  background-color: #8de3df;
+  color: #393e46;
 }/*# sourceMappingURL=FieldagentDataForm.css.map */

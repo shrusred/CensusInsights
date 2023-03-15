@@ -4,18 +4,23 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "../FieldagentDataForm/FieldagentDataForm.scss";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 
 function FieldAgentFormComp(props) {
   const navigate = useNavigate();
   const { assignmentid, userid } = useParams();
-  const userId = userid;
-
+  const [errordialogopen, setErrorDialogOpen] = useState(false);
+  const [successdialogopen, setSuccessDialogOpen] = useState(false);
   const [inputFields, setInputFields] = useState([
-    { age: "", gender: "", ethnicity: "", occupation: "", income: 0 },
+    { age: "", gender: "", ethnicity: "", occupation: "", income: "" },
   ]);
 
-  const [isAddDisabled, setIsAddDisabled] = useState(false);
-  const [isDeleteDisabled, setIsDeleteDisabled] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const handleFormChange = (index, event) => {
@@ -23,20 +28,34 @@ function FieldAgentFormComp(props) {
     data[index][event.target.name] = event.target.value;
     setInputFields(data);
   };
-
+  const handleErrorDialogOpen = () => {
+    setErrorDialogOpen(true);
+  };
+  const handleErrorDialogClose = () => {
+    setErrorDialogOpen(false);
+  };
+  const handleSuccessDialogOpen = () => {
+    setSuccessDialogOpen(true);
+  };
+  const handleSuccessDialogClose = () => {
+    setSuccessDialogOpen(false);
+    navigate(`/fieldagent/home/${userid}`);
+  };
   const submit = (e) => {
     //post form data for this assignment to server with api post call
     e.preventDefault();
     setIsFormSubmitted(true);
+    console.log(inputFields);
     axios
       .post(`http://localhost:8080/census/${assignmentid}`, inputFields)
       .then((response) => {
         console.log(response.data); // handle success
+        handleSuccessDialogOpen();
       })
       .catch((error) => {
+        handleErrorDialogOpen();
         console.error(error); // handle error
       });
-    // console.log(inputFields);
   };
 
   const addFields = (inp) => {
@@ -45,7 +64,7 @@ function FieldAgentFormComp(props) {
       gender: "",
       ethnicity: "",
       occupation: "",
-      income: "0",
+      income: "",
     };
     setInputFields([...inputFields, newfield]);
   };
@@ -144,6 +163,7 @@ function FieldAgentFormComp(props) {
                   <option>Retail</option>
                   <option>Transportation</option>
                 </datalist>
+
                 <input
                   className="censusdata__forminput--input"
                   disabled={isFormSubmitted}
@@ -174,6 +194,48 @@ function FieldAgentFormComp(props) {
           Add household member data..
         </button>
         <br></br>
+        <Dialog open={errordialogopen} onClose={handleErrorDialogClose}>
+          <DialogTitle>Ooops!</DialogTitle>
+          <DialogContent>
+            <p>
+              There is an error with the data you just submitted to the server.
+              Ensure you entered the ages and incomes in number format. Close
+              this box. Refresh page and retry submit.
+            </p>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleErrorDialogClose}
+              variant="contained"
+              autoFocus
+              className="dialogbox_button"
+              style={{ backgroundColor: "#8de3df", color: "#393e46" }}
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
+        {/*************  SUCCESS DIALOG BOX  ******************/}
+        <Dialog open={successdialogopen} onClose={handleSuccessDialogClose}>
+          <DialogTitle>Success!</DialogTitle>
+          <DialogContent>
+            <p>
+              You have submitted the form data successfully to the server. Click
+              done to be re-directed back to your other assignments.
+            </p>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleSuccessDialogClose}
+              variant="contained"
+              autoFocus
+              className="dialogbox_button"
+              style={{ backgroundColor: "#8de3df", color: "#393e46" }}
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
         <button
           className="censusdata__submitbutton"
           type="submit"
@@ -186,93 +248,3 @@ function FieldAgentFormComp(props) {
   );
 }
 export default FieldAgentFormComp;
-
-///   OLD CODE   ////
-{
-  /* <form onSubmit={handleSubmit}>
-        <Box>
-          <TextField
-            label="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <Box m={2} />
-          <TextField
-            label="Age"
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-        </Box>
-
-        <RadioGroup
-          aria-label="gender"
-          name="gender"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        >
-          <FormControlLabel value="male" control={<Checkbox />} label="Male" />
-          <FormControlLabel
-            value="female"
-            control={<Checkbox />}
-            label="Female"
-          />
-        </RadioGroup>
-        <Box>
-          <InputLabel id="select-label">FRUIT!!!</InputLabel>
-          <Select
-            label="Fruit"
-            // value={fruit}
-            onChange={(e) => setFruit(e.target.value)}
-            className="selectbox"
-          >
-            <MenuItem value="apple">Apple</MenuItem>
-            <MenuItem value="banana">Banana</MenuItem>
-            <MenuItem value="orange">Orange</MenuItem>
-          </Select>
-          <Box m={2} />
-        </Box>
-        <Box>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-          <Box m={10} />
-        </Box>
-      </form> */
-}
-
-{
-  /* <Box border={1} borderColor="primary.main" borderRadius={5} p={2}>
-<Grid container spacing={4} className="repeatingcomp">
-  <Grid item sm={6}>
-    <TextField label="Age" fullWidth />
-  </Grid>
-  <Grid item sm={6}>
-    <TextField label="Gender" fullWidth />
-  </Grid>
-  <Grid item sm={6}>
-    <TextField label="Occupation" fullWidth />
-  </Grid>
-  <Grid item sm={6}>
-    <TextField label="Income" fullWidth />
-  </Grid>
-</Grid>
-</Box> */
-}
-
-/////input household number//////
-// const [householdsize, setHouseholdSize] = useState(0);
-{
-  /* <div>
-        <TextField
-          label="Members in household"
-          value={householdsize}
-          onChange={handleHouseholdInputChange}
-        />
-      </div> */
-}
-//// input household number change////
-// const handleHouseholdInputChange = (event) => {
-//   setHouseholdSize(event.target.value);
-//   // addFields(event.target.value);
-// };
