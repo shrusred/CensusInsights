@@ -10,11 +10,8 @@ import {
   TableRow,
   Paper,
   Button,
-  Modal,
   TextField,
-  Select,
   MenuItem,
-  useThemeProps,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -28,7 +25,7 @@ function Assignments({ screenSize }) {
   const [rows, setRows] = useState([]);
   const [cityoptions, setCityOptions] = useState([]);
   const [agentoptions, setAgentOptions] = useState([]);
-  const [showbutton, setShowbutton] = useState(true);
+
   const [newrow, setNewrow] = useState([
     {
       street: "",
@@ -39,7 +36,6 @@ function Assignments({ screenSize }) {
       longitude: 0,
     },
   ]);
-  // console.log(newrow[0].city);
 
   const [editableRowIndex, setEditableRowIndex] = useState(null);
 
@@ -48,8 +44,6 @@ function Assignments({ screenSize }) {
     axios
       .get(`http://localhost:8080/manager/${userId}/assignments`)
       .then((response) => {
-        // console.log("am in the fetch manager assignments", response.data);
-        // console.log("rows", rows);
         setRows(response.data);
         /////////////  city options   ///////////////////
         const city_key = "city";
@@ -62,7 +56,6 @@ function Assignments({ screenSize }) {
           return acc;
         }, []);
 
-        // console.log(uniquecities);
         // use map to create array of objects of city option
         const label_value_cities = uniquecities.map((value) => ({
           label: value,
@@ -82,14 +75,12 @@ function Assignments({ screenSize }) {
           return acc;
         }, []);
 
-        // console.log(uniqueagents);
         // use map to create array of objects of city option
         const label_value_agents = uniqueagents.map((value) => ({
           label: value,
           value: value,
         }));
 
-        // console.log(label_value_agents);
         setAgentOptions(label_value_agents);
       })
       .catch((error) => {
@@ -105,46 +96,22 @@ function Assignments({ screenSize }) {
     setRows([...rows, {}]);
   };
 
-  const handleRowDelete = async (assignmentid) => {
-    axios
-      .delete(`http://localhost:8080/assignment/${assignmentid}`)
-      .then((response) => {
-        // console.log("am in the fetch manager assignments", response.data);
-        fetchManagerAssignments(userId);
-        // console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const handleRowEdit = async (index) => {
     setEditableRowIndex(index);
   };
 
   const handleRowSave = (index) => {
     setEditableRowIndex(null);
-    ///// if saving a new row
+
     axios
       .post("http://localhost:8080/assignment", newrow[0])
-      .then((response) => {
-        // console.log("Response of post assignment:", response.data);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.error("Error of post assignment:", error);
       });
-    ///// if editing an existing row
   };
 
   const handleChange = (event, index, key) => {
-    // city
-    // fieldagent_id
-    // latitude
-    // longitude
-    // postalcode
-    // street
-    // console.log(event);
-
     if (key === "fieldagentname") {
       const find_faname = event.target.value;
       const filteredData = rows.filter(
@@ -174,28 +141,10 @@ function Assignments({ screenSize }) {
     setRows(newRows);
   };
 
-  ////TESTING VARIOUS FUNCTIONALITIES
-  ///// 1. testing post assignment api
-  const testpostData = {
-    street: "frontendposting_Test_1",
-    city: "Aurora",
-    postalcode: "L8K4F3",
-    fieldagent_id: 1,
-    latitude: 43.86,
-    longitude: -79.79,
-  };
   function handleBackButtonClick() {
     navigate(`/manager/home/${userId}`);
   }
 
-  // if (screenSize === "mobile") {
-  //   return (
-  //     <>
-  //       <h1>THIS IS THE MOBILE CONTENT</h1>
-  //     </>
-  //   );
-  // }
-  // console.log("agentoptions:", agentoptions);
   return (
     <>
       <ArrowBackIcon
@@ -224,6 +173,7 @@ function Assignments({ screenSize }) {
             overflowY: "auto",
             overflowX: "auto",
             maxWidth: "1300px",
+            minWidth: "330px",
           }}
           className="agentassignments__tablecontainer"
         >
