@@ -121,7 +121,7 @@ function getManagerInfo(id) {
 
 //6. function to get the assignments of a manager
 function getManagerAssignments(id) {
-  const manager_assignments_query = `select a.assignmentid as id,f.fieldagentid,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude,c.assignment_id as censusassignment from   assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id left join censusdata c on c.assignment_id=a.assignmentid where m.managerid=${id};`;
+  const manager_assignments_query = `select distinct a.assignmentid as id,f.fieldagentid,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude,c.assignment_id as censusassignment from   assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id left join censusdata c on c.assignment_id=a.assignmentid where m.managerid=${id};`;
   return new Promise((resolve, reject) => {
     connection.query(manager_assignments_query, (error, results, fields) => {
       if (error) {
