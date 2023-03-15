@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import { useParams } from "react-router-dom";
 import { decodeToken } from "react-jwt";
+import "../../components/FieldAgent/FileUpload/FileUpload.scss";
 function FieldAgentVerify() {
   const { userid, assignmentid } = useParams();
 
@@ -16,8 +17,7 @@ function FieldAgentVerify() {
   return (
     <>
       <Header name={fullmessage} />
-      <h3>Verify if you are at the right location for # {assignmentid}</h3>
-      <Fileupload />
+      <Fileupload assignmentid={assignmentid} />
       <Footer />
     </>
   );

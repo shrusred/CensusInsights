@@ -11,7 +11,7 @@ import {
   DialogActions,
 } from "@mui/material";
 
-const FileUpload = () => {
+const FileUpload = (props) => {
   const navigate = useNavigate();
   let { assignmentid, userid } = useParams();
   const [verifiedopen, setVerifiedOpen] = useState(false);
@@ -33,7 +33,7 @@ const FileUpload = () => {
   };
 
   const uploadHandler = (event) => {
-    console.log("am in uploadhandler");
+    // console.log("am in uploadhandler");
     const filechosen = event.target.files[0];
     // console.log(filechosen);
     fetch(`http://localhost:8080/assignment/${assignmentid}/image`, {
@@ -55,15 +55,33 @@ const FileUpload = () => {
 
   return (
     <>
-      <h3>Upload a picture of assignment location for verification</h3>
-      <div className="fileupload">
-        <div className="fileinput">
-          <input type="file" onChange={uploadHandler} />
-        </div>
-        <div className="fileinput-info">
-          <p>Supports files of type .png, .jpeg, .jpg</p>
+      <div className="photoverify">
+        <h3 className="photoverify__heading">
+          Verify if you are at the right location for # {props.assignmentid}
+        </h3>
+        <p className="photoverify__message">
+          Upload a photo of assignment location for verification
+        </p>
+        <div className="photoverify__fileupload">
+          {/* <div className="photoverify__fileupload"> */}
+          <input
+            id="filechoosebutton"
+            className="photoverify__fileupload--fileinput"
+            type="file"
+            onChange={uploadHandler}
+          />
+          {/* </div> */}
+          <div className="photoverify__fileupload--supportmsg">
+            <p>Supports files of type .png, .jpeg, .jpg</p>
+            <ul>
+              Note : If unable to upload a photo, try
+              <li>using a different browser</li>
+              <li>closing other file searches on your machine</li>
+            </ul>
+          </div>
         </div>
       </div>
+      {/*******************  DIALOG  ************************/}
       <div className="verified_dialogbox">
         <Dialog open={verifiedopen} onClose={handleVerifiedDialogClose}>
           <DialogTitle>Verified!</DialogTitle>
