@@ -4,5 +4,6 @@ html {
   font-family: "Raleway", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
   color: #393e46;
 }/*# sourceMappingURL=App.css.map */

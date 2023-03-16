@@ -84,7 +84,7 @@ const FileUpload = (props) => {
       {/*******************  DIALOG  ************************/}
       <div className="verified_dialogbox">
         <Dialog open={verifiedopen} onClose={handleVerifiedDialogClose}>
-          <DialogTitle>Verified!</DialogTitle>
+          <DialogTitle>Success!</DialogTitle>
           <DialogContent>
             <p>Photo upload successful, you can now start data collection</p>
           </DialogContent>

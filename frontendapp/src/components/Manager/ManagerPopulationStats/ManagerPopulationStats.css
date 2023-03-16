@@ -1,1 +1,86 @@
-/*# sourceMappingURL=ManagerPopulationStats.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap");
+body,
+html {
+  font-family: "Raleway", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
+  color: #393e46;
+}
+
+@media (min-width: 360px) and (max-width: 999px) {
+  .charts {
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    width: 95vw;
+    min-width: 420;
+    box-shadow: 0 0 10px #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .charts__age {
+    width: 95%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .charts__income {
+    width: 95%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (min-width: 1000px) {
+  .charts {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .charts__age {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    height: 30%;
+    width: 80%;
+    box-shadow: 0 0 10px #eeeeee;
+  }
+  .charts__income {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    height: 30%;
+    width: 80%;
+    box-shadow: 0 0 10px #eeeeee;
+  }
+  .charts__comingsoon {
+    margin-left: 5%;
+    margin-top: 10%;
+    width: 80vw;
+    height: 10vh;
+  }
+  .charts__comingsoon--chart {
+    margin-top: 2vh;
+    min-height: 5vh;
+  }
+}
+
+.backarrow {
+  margin-top: 1vh;
+  margin-left: 2vw;
+  color: #3b7b9a;
+  transform: scale(2);
+}/*# sourceMappingURL=ManagerPopulationStats.css.map */

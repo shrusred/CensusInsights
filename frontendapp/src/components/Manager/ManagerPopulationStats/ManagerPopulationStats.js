@@ -1,8 +1,10 @@
 import "../ManagerPopulationStats/ManagerPopulationStats.scss";
 import formdata from "../../../testdata/formdatatest.json";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   BarChart,
   Bar,
@@ -15,24 +17,17 @@ import {
 } from "recharts";
 
 function ManagerPopulationStats() {
+  const navigate = useNavigate();
   const { userid } = useParams();
   const [age, setAge] = useState([]);
   const [yearlyincome, setYearlyIncome] = useState([]);
   // const [ethnicity, setEthnicity] = useState([]);
   // const [occupation, setOccupation] = useState([]);
   // console.log(userid);
+  function handleBack() {
+    navigate(`/manager/home/${userid}`);
+  }
 
-  const data = [
-    { city: "Markham", age: 29 },
-    { city: "Vaughn", age: 22 },
-  ];
-  const income = [
-    { city: "Markham", income: 73300 },
-    { city: "Vaughn", income: 90000 },
-    { city: "Vaughn", income: 10000 },
-    { city: "Vaughn", income: 50000 },
-    { city: "Vaughn", income: 120000 },
-  ];
   function addArrayElements(arr) {
     let sum = 0;
 
@@ -67,7 +62,7 @@ function ManagerPopulationStats() {
             }
           }
         });
-        console.log("age array", age);
+        // console.log("age array", age);
         setAge(age);
       })
       .catch((error) => {
@@ -102,7 +97,7 @@ function ManagerPopulationStats() {
             }
           }
         });
-        console.log("yearlyincome array", yearlyincome);
+        // console.log("yearlyincome array", yearlyincome);
         setYearlyIncome(yearlyincome);
       })
       .catch((error) => {
@@ -154,47 +149,80 @@ function ManagerPopulationStats() {
     return { city: city, income: avg };
   });
 
-  console.log("income average:", income_result);
+  // console.log("income average:", income_result);
 
   return (
     <>
-      <BarChart
-        width={500}
-        height={300}
-        data={age_result}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="city" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="age" fill="#8884d8" />
-      </BarChart>
-      {/*************************************************/}
-      <BarChart
-        width={500}
-        height={300}
-        data={income_result}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="city" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="income" fill="#82ca9d" />
-      </BarChart>
+      <ArrowBackIcon className="backarrow" onClick={handleBack} />
+
+      <div className="charts">
+        <div className="charts__age">
+          <BarChart
+            width={480}
+            height={400}
+            data={age_result}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="city" />
+            <YAxis
+              label={{
+                value: "Average",
+                angle: -90,
+                position: "insideLeft",
+                offset: -10,
+              }}
+            />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="age" fill="#8884d8" />
+          </BarChart>
+        </div>
+        {/*************************************************/}
+        <div className="charts__income">
+          <BarChart
+            width={480}
+            height={400}
+            data={income_result}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="city" />
+            <YAxis
+              label={{
+                value: "Average",
+                angle: -90,
+                position: "insideLeft",
+                offset: -10,
+              }}
+            />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="income" fill="#82ca9d" />
+          </BarChart>
+        </div>
+        <div className="charts__comingsoon">
+          <div className="charts__comingsoon--chart">
+            <p>Occupation stats coming soon..</p>
+          </div>
+          <div className="charts__comingsoon--chart">
+            <p>Ethnicity stats coming soon..</p>
+          </div>
+          <div className="charts__comingsoon--chart">
+            <p>Gender stats coming soon..</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

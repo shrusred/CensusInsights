@@ -8,6 +8,7 @@ html {
   font-family: "Raleway", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
   color: $darkgray;
   // @include mob {
   //   padding: 4vh 3vw 4vh 3vw;
