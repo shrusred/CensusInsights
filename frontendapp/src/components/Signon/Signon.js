@@ -6,18 +6,8 @@ import { decodeToken } from "react-jwt";
 import "../Signon/Signon.scss";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-} from "mdb-react-ui-kit";
-import logoweb from "../../assets/images/censusinsights.webp";
 function Signoncomponent() {
   const navigate = useNavigate();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     const authToken = sessionStorage.getItem("clientAuthToken");
@@ -27,12 +17,12 @@ function Signoncomponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("you are in form submit");
+    // console.log("you are in form submit");
     // endpoint is at http://localhost:8080/login
     const username = e.target.username.value;
-    console.log("username", e.target.username.value);
+    // console.log("username", e.target.username.value);
     const password = e.target.password.value;
-    console.log("password", e.target.password.value);
+    // console.log("password", e.target.password.value);
     axios
       .post("http://localhost:8080/login", {
         username: username,
@@ -40,19 +30,19 @@ function Signoncomponent() {
       })
       .then((response) => {
         sessionStorage.setItem("clientAuthToken", response.data.token); //getItem decode from session storage; session storage API
-        console.log("this is my token", decodeToken(response.data.token));
-        console.log(response.data.role);
-        console.log(response.data.id);
-        console.log(response.data.name);
+        // console.log("this is my token", decodeToken(response.data.token));
+        // console.log(response.data.role);
+        // console.log(response.data.id);
+        // console.log(response.data.name);
         if (response.data.role === "manager") {
-          console.log(
-            "am in the if portion of the if-else logic;I am a MANAGER"
-          );
+          // console.log(
+          //   "am in the if portion of the if-else logic;I am a MANAGER"
+          // );
           navigate(`/manager/home/${response.data.id}`); //pass properties through navigate
         } else {
-          console.log(
-            "am in the else portion of the if-else logic; I am a FIELDAGENT"
-          );
+          // console.log(
+          //   "am in the else portion of the if-else logic; I am a FIELDAGENT"
+          // );
           navigate(`/fieldagent/home/${response.data.id}`);
         }
       })
@@ -61,21 +51,6 @@ function Signoncomponent() {
         console.log("login error", err.response.data);
       });
   };
-
-  // const fetchProfile = (token) => {
-  //   axios
-  //     .get(`profilepath/${userid}`, {
-  //       headers: {
-  //         authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log("response", response);
-  //       setProfileData(response.data);
-  //       setIsLoggedIn(true);
-  //     })
-  //     .catch((err) => console.log("profile error", err.response.data));
-  // };
 
   return (
     <div className="loginformcontainer">

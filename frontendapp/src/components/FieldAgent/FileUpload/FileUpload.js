@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import "../FileUpload/FileUpload.scss";
 import { useNavigate } from "react-router";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   Button,
   Dialog,
@@ -53,8 +54,13 @@ const FileUpload = (props) => {
       });
   };
 
+  function handleHome() {
+    navigate(`/fieldagent/home/${userid}`);
+  }
+
   return (
     <>
+      <ArrowBackIcon className="backarrow" onClick={handleHome} />
       <div className="photoverify">
         <h3 className="photoverify__heading">
           Verify if you are at the right location for # {props.assignmentid}

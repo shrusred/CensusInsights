@@ -136,6 +136,9 @@
 }
 .fieldagentdataback {
   color: $tealblue;
+  transform: scale(2);
+  margin-top: 2%;
+  margin-left: 2%;
 }
 .addformbutton {
   @include mob {

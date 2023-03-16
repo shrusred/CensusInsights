@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import geolib from "geolib";
 // import FileUpload from "../FileUpload/FileUpload";
 function Verification(props) {
+  const navigate = useNavigate();
+
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   console.log("assingment lat from prop:", props.assignmentlat);
@@ -31,10 +35,14 @@ function Verification(props) {
       console.log("Geolocation is not supported by this browser.");
     }
   }, []);
+  //3. back button go to field agent home function
+  function handleHome() {
+    navigate(`/fieldagent/home/:userid`);
+  }
 
   return (
     <>
-      {/* <FileUpload /> */}
+      <ArrowBackIcon className="backarrow" onClick={handleHome} />
       <div className="locationverify">
         <p>Getting your current latitude..: {latitude}</p>
 
@@ -56,43 +64,3 @@ function Verification(props) {
 }
 
 export default Verification;
-
-/////////////   OLD CODE    /////////////
-//get the current location of the field agent
-// console.log(navigator.geolocation.getCurrentPosition((success) => {}));
-
-// const pickerOpts = {
-//   types: [
-//     {
-//       description: "Images",
-//       accept: {
-//         "image/*": [".png", ".gif", ".jpeg", ".jpg"],
-//       },
-//     },
-//   ],
-//   excludeAcceptAllOption: true,
-//   multiple: false,
-// };
-
-// async function getTheFile() {
-//   // open file picker
-//   const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
-//   console.log([fileHandle]);
-
-//   // get file contents
-//   const fileData = await fileHandle.getFile();
-//   console.log(fileData);
-// }
-
-// async function handleClick(e) {
-//   e.preventDefault();
-//   console.log("You clicked the upload pic button");
-//   // await getTheFile();
-//   // window.showSaveFilePicker();
-// }
-// const [file, setFile] = useState();
-// console.log(file);
-// const removeFile = (filename) => {
-//   setFile();
-// };
-// file={file} setFile={setFile}

@@ -74,12 +74,13 @@ function FieldAgentFormComp(props) {
     setInputFields(data);
   };
 
+  function handleHome() {
+    navigate(`/fieldagent/home/${userid}`);
+  }
+
   return (
     <>
-      <div className="fieldagentdataback">
-        <ArrowBackIcon />
-      </div>
-
+      <ArrowBackIcon className="fieldagentdataback" onClick={handleHome} />
       <div className="censusdata">
         <div className="censusdata__header">
           <h3 className="censusdata__header--text1">

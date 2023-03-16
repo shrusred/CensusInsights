@@ -1,4 +1,8 @@
 @import "../../../App.scss";
+.backarrow {
+  color: $tealblue;
+  transform: scale(2);
+}
 .photoverify {
   @include mob {
     height: 100vh;
