@@ -19,7 +19,6 @@ const fs = require("fs");
 
 const PORT = process.env.PORT || 8080;
 
-// app.use(bodyparser.json());
 //////////////////////////////////////////////////////
 /////////   DATABASE CONNECTION   ////////////////////
 //////////////////////////////////////////////////////
@@ -74,7 +73,7 @@ function getFieldagentAssignments(id) {
     });
   });
 }
-// function to get the fieldagent's particular assignment for verification
+// 4. function to get the fieldagent's particular assignment for verification
 
 function getFieldagentAssignmentVerify(userid, assignmentid) {
   const fieldagent_assignment_verify_query = `SELECT * FROM assignments where fieldagent_id=${userid} and assignmentid =${assignmentid};`;
@@ -91,7 +90,7 @@ function getFieldagentAssignmentVerify(userid, assignmentid) {
     );
   });
 }
-//4. Function to get fieldagent information
+//5. Function to get fieldagent information
 function getFieldagentInfo(id) {
   const fieldagent_info_query = `select fieldagentid,fieldagentname,latitude,longitude from fieldagent where fieldagentid=${id};`;
   return new Promise((resolve, reject) => {
@@ -105,7 +104,7 @@ function getFieldagentInfo(id) {
   });
 }
 
-//5. function to get the manager information
+//6. function to get the manager information
 function getManagerInfo(id) {
   const manager_info_query = `select * from manager where managerid=${111};`;
   return new Promise((resolve, reject) => {
@@ -119,7 +118,7 @@ function getManagerInfo(id) {
   });
 }
 
-//6. function to get the assignments of a manager
+//7. function to get the assignments of a manager
 function getManagerAssignments(id) {
   const manager_assignments_query = `select distinct a.assignmentid as id,f.fieldagentid,f.fieldagentname,a.street,a.city,a.postalcode,a.latitude,a.longitude,c.assignment_id as censusassignment from   assignments a join fieldagent f on a.fieldagent_id=f.fieldagentid join manager m on m.managerid=f.manager_id left join censusdata c on c.assignment_id=a.assignmentid where m.managerid=${id};`;
   return new Promise((resolve, reject) => {
@@ -143,14 +142,14 @@ function getCensus(managerid) {
     });
   });
 }
-//7.function to read file: locationphotoJSON
+//8.function to read file: locationphotoJSON
 function readLocationphoto() {
   const locationphotoFile = fs.readFileSync(locationphotoJSON);
   const locationphotoData = JSON.parse(locationphotoFile);
   return locationphotoData;
 }
 
-//8. function to write new data into the locationphoto
+//9. function to write new data into the locationphoto
 function writeLocationPhotoItem(data) {
   const newLocationPhotoData = data;
 
@@ -160,7 +159,7 @@ function writeLocationPhotoItem(data) {
   fs.writeFileSync("./data/locationphoto.json", JSON.stringify(toWrite));
 }
 
-//9.function to create new locationphoto in the storage
+//10.function to create new locationphoto in the storage
 function createNewLocationPhotoItem(data) {
   //Creating data obj
   const newItem = {
@@ -175,9 +174,6 @@ const fileTypeFromBuffer = (...args) =>
   import("file-type").then(({ fileTypeFromBuffer }) =>
     fileTypeFromBuffer(...args)
   ); //Received from instructor Ben
-
-//10. censusdata for manager assignments
-// select c.householdnumber,c.occupation,c.ethnicity,c.age,c.income,c.gender,c.assignment_id from manager m join fieldagent f on m.managerid=f.manager_id join assignments a on a.fieldagent_id=f.fieldagentid join censusdata c on c.assignment_id=a.assignmentid where m.managerid=111;
 
 ////////////////////////////////////////////////////
 /////////////////   API ACTIONS   //////////////////
@@ -308,7 +304,7 @@ const authorize = (req, res, next) => {
     next();
   });
 };
-// 3. LOGIN END POINT- user login verification
+// 6. LOGIN END POINT- user login verification
 // a protected route, note we are using a second parameter "authorize"
 // which is our middleware for authentication
 app.post("/login", async (req, res) => {
@@ -346,37 +342,37 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// 4. Get fieldagent information
+// 7. Get fieldagent information
 app.get("/fieldagent/:id", async (req, res) => {
   const fieldagent_Info = await getFieldagentInfo(req.params.id);
   return res.send(fieldagent_Info);
 });
 
-// 5. Get assignments of a field agent
+// 8. Get assignments of a field agent
 app.get("/fieldagent/:id/assignments", async (req, res) => {
   const fieldagent_Assignments = await getFieldagentAssignments(req.params.id);
   return res.send(fieldagent_Assignments);
 });
 
-// 6. Get manager information
+// 9. Get manager information
 app.get("/manager/:id", async (req, res) => {
   const manager_Info = await getManagerInfo(req.params.id);
   return res.send(manager_Info);
 });
 
-// 7. Get manager assignments
+// 10. Get manager assignments
 app.get("/manager/:id/assignments", async (req, res) => {
   const manager_Assignments = await getManagerAssignments(req.params.id);
   return res.send(manager_Assignments);
 });
 
-// . Get census data and region data for manager
+// 11. Get census data and region data for manager
 app.get("/manager/:id/census", async (req, res) => {
   const manager_census = await getCensus(req.params.id);
   return res.send(manager_census);
 });
 
-// Get particular assignment of field agent for verification
+// 12. Get particular assignment of field agent for verification
 
 app.get("/verify/:userid/assignment/:assignmentid", async (req, res) => {
   const assignment_verify = await getFieldagentAssignmentVerify(
@@ -394,27 +390,3 @@ app.get("/verify/:userid/assignment/:assignmentid", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-////// OLD CODE --- DELETE LATER IF FOUND TO BE IRRELEVANT  //////
-//1. Attempt 1
-// app.post("/photoupload", (req, res) => {
-//   // console.log(req);
-//   console.log(req.body);
-//   // writeLocationPhotoItem(req.body);
-//   // console.log("file uploaded");
-//   return res.status(200).json({ result: true, msg: "file uploaded" });
-// });
-
-////// possible get api for home page
-
-// // 5. Authorization -- GET manager home data---should return manager name, username
-// app.get("/manager/home/:id", authorize, (req, res) => {
-//   console.log("reached manager profile home page based on id");
-//   return res.status(200).json({ token });
-// });
-
-// // 6. Authorization -- GET fieldagent home data
-// app.get("/fieldagent/home/:id", authorize, (req, res) => {
-//   console.log("reached fieldagent profile home page based on id");
-//   return res.status(200).json({ token });
-// });
