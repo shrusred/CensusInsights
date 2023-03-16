@@ -27,6 +27,23 @@
 5. HTML
 6. scss
 
+# Available data
+
+The app has been seeded with data for few users. the users themselves are orgnaized such that there is a manager per region and each region has cities which have Fieldagents assigned for census data collection. The Manager is the one who is able to view population statistics for the region(which comprises of multiple cities).
+
+Seeded can be found for:
+
+1. Managers
+   (a) jmcreid (username: jmcreid password abc123)
+   (b) dschuman (username:dschuman password:efg789)
+2. Fieldagents of Managers
+   (i) Manager jmcreid's Fieldagents - msmith and cdietrich
+   (a) msmith (username: msmith password: sun4455)
+   (b) cdietrich (username: cdietrich password:junjul333)
+   (ii) Manager dschuman's Fieldagents - skurkoff and hmazari
+   (a) skurkoff (username: skurkoff password:canada123)
+   (b) hmazari (username:hmazari password:london123 )
+
 # Known bugs and workarounds
 
 1. Using browser back button may cause error with data display as the data is tied to the user's login and going back may change the way the data is received
