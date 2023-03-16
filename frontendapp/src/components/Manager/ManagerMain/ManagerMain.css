@@ -4,6 +4,7 @@ html {
   font-family: "Raleway", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  overflow-y: scroll;
   color: #393e46;
 }
 
@@ -31,6 +32,8 @@ html {
     font-size: 16px;
     border-radius: 1vh;
     border: 1px solid #a9aeb0;
+    background-color: #8de3df;
+    color: #393e46;
   }
   .managerhomebox__statistics {
     max-width: 400px;
@@ -42,6 +45,8 @@ html {
     font-size: 16px;
     border-radius: 1vh;
     border: 1px solid #a9aeb0;
+    background-color: #8de3df;
+    color: #393e46;
   }
 }
 @media (min-width: 1000px) {
