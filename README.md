@@ -2,55 +2,33 @@
 
 ### for front end: `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### for backend `npm run dev`
 
-### `npm run build`
+# Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. The app allows 2 types of users to login and they have different work flows. The 2 types of users are Manager and Fieldagent. The app's mySQL database has been seeded with data and the user logins for each type of user has been provided in a document on synapse comments and the .gitignore folder
+2. Manger workflow:
+   (a) Manager home leads links two 2 different pages using buttons.
+   (i) One page that the manager can navigate to is the manager - fieldagent assignments page. This page allows the manager to assign his/her field agents census data collection assignments. [NOTE] To send a new assignment to the server click add row ->click edit on that row ->add data in the expected form->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   (ii) Another page the manager can navigate to from the manager home is the region population statistics page. This page gives some metrics for the manger's jurisdiction/region
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Fieldagent workflow:
+   (a)The Fieldagent home has a table which is list of the assignments of a fieldagent.Only those assignments without completed census data collection are visible.Clicking on an assignment row will lead to verification page
+   (b)The verification page expects the fieldagent to upload a picture of the location he/she is at, once the photo has been upload, the image will be sent to the backend server. After verification, the user will be lead to that assignment's datacollection form
+   (c) The data collection form allows the fieldagent to add rows for each memeber of the household. Clicking on submit will send the data to the backend server and the redirect the fieldagent to their home page
 
-### `npm run eject`
+# Tech spec
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. MySQL DB
+2. Knex connection
+3. React for front end
+4. Express for backend
+5. HTML
+6. scss
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Known bugs and workarounds
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Using browser back button may cause error with data display as the data is tied to the user's login and going back may change the way the data is received
+2. Use different browsers to try to get past the Fieldagent Verify page in case you are unable to upload the photo file. If you need to see the form associated with assignment, then change the URL to /fieldagent/*insert fieldagent id/form/*insert assignment id\*
+3. While logged in as a manager and while trying to add a new row follow this method : click add row -> click edit -> add the new row information in the right format(same as previous rows) -> click save and refresh the browser page
