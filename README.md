@@ -1,10 +1,10 @@
 # Census Insights
 
-### for front end: `npm start`
+## for front end: `npm start`
 
-### for backend `npm run dev`
+## for backend `npm run dev`
 
-### Run these MySQL commands
+## Run these MySQL commands
 
 Run the following commands on MySQL terminal one by one after ensuring that a connection to the database named censusinsights which is mentioned in the knexfile.js file is successful. The Database and it's tables will be created using the file in the "migrations" folder which is inside the "backend" folder.
 
@@ -15,7 +15,7 @@ IMPORTANT NOTE:
 3. When copying commands ensure no additional spaces or characters are copied
 4. When copying single quotes or double quotes used in the insert statements, ensure that character corruption or substitution doesn't happen with the single quote character i.e., ' or the doble quote character i.e., " in the mysql terminal
 
-# Run commands in order
+### Run commands in order
 
 Run these commands from 1 to 21 in order (one after another and not all in one go).These commands modify columns, add columns or add constraints to existing tables and their columns.
 
