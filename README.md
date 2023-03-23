@@ -7,16 +7,17 @@
 ### Run these MySQL commands
 
 Run the following commands on MySQL terminal one by one after ensuring that a connection to the database named censusinsights which is mentioned in the knexfile.js file is successful. The Database and it's tables will be created using the file in the "migrations" folder which is inside the "backend" folder.
+
 IMPORTANT NOTE:
 
-1. ORDER OF COMMANDS MATTER!!
-2. ORDER OF TABLES ON WHICH COMMANDS ARE APPLIED ALSO MATTER TO MAINTAIN PRIMARY-FOREIGN KEY REFERENCES
-3. WHEN COPYING COMMANDS ENSURE NO ADDITIONAL SPACES OR CHARACTERS ARE COPIED
-4. WHEN COPYING SINGLE QUOTES OR DOUBLE QUOTES USED IN THE INSERT STATEMENTS, ENSURE THAT CHARACTER CORRUPTION OR SUBSTITUTION DOESN'T HAPPEN WITH THE SINGLE QUOTE CHARACTER i.e., ' OR THE DOBLE QUOTE CHARACTER i.e., " IN THE MYSQL TERMINAL
+1. Order of commands matter!!
+2. Order of tables on which commands are applied also matter to maintain primary-foreign key references
+3. When copying commands ensure no additional spaces or characters are copied
+4. When copying single quotes or double quotes used in the insert statements, ensure that character corruption or substitution doesn't happen with the single quote character i.e., ' or the doble quote character i.e., " in the mysql terminal
 
 # Run commands in order
 
-RUN THESE COMMANDS FROM 1 TO 21 IN ORDER (ONE AFTER ANOTHER AND NOT ALL IN ONE GO).THESE COMMANDS MODIFY COLUMNS, ADD COLUMNS OR ADD CONSTRAINTS TO EXISTING TABLES AND THEIR COLUMNS.
+Run these commands from 1 to 21 in order (one after another and not all in one go).These commands modify columns, add columns or add constraints to existing tables and their columns.
 
 ### operations on table named “geo”
 
@@ -56,7 +57,7 @@ RUN THESE COMMANDS FROM 1 TO 21 IN ORDER (ONE AFTER ANOTHER AND NOT ALL IN ONE G
 
 ## Insert data into tables(DO NOT RUN THESE WITHOUT SUCCESSFUL COMPLETION OF ABOVE COMMANDS)
 
-AFTER RUNNING COMMANDS 1-21 FROM ABOVE, RUN THE FOLLOWING INSERT COMMANDS IN ORDER FROM 1 TO 5. NOTE: THE 3rd INSERT COMMAND HAS 2 PARTS- a and b
+After running commands 1-21 from above, run the following insert commands in order from 1 to 5. NOTE: the 3rd insert command has 2 parts- a and b
 
 ### 1.GEO table inserts
 
